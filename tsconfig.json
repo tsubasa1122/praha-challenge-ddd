@@ -5,14 +5,11 @@
     "declaration": true,
     "removeComments": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2017",
+    "target": "ES2019",
     "module": "commonjs",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
-    "paths": {
-      "@testUtil/*": ["testUtil/*"]
-    }
   }
 }
