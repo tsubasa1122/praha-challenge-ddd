@@ -4,7 +4,8 @@
     "src/**/*.ts",
     ".eslintrc.js",
     "jest.config.js",
-    "jest.integration.config.js"
+    "jest.integration.config.js",
+    "testUtil/*"
   ],
   "exclude": [
     "node_modules",
