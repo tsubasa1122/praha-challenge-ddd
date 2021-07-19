@@ -10,7 +10,7 @@
     "tsc": "tsc",
     "build": "npm-run-all clean tsc",
     "start": "STAGE=production node .",
-    "dev": "dotenv -e .local.env ts-node-dev --respawn src/index.ts",
+    "dev": "dotenv -e .local.env -- ts-node-dev --respawn src/index.ts",
     "check-types": "tsc --noEmit",
     "eslint": "eslint src/**/*.ts",
     "eslint:fix": "eslint src/**/*.ts --fix",
