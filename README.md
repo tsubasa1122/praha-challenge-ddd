@@ -38,4 +38,4 @@ $ yarn test:integration
 
 ### Design
 
-- ER 図(er.png)・ドメインモデル図(domain-model.png)・ユースケース図(usecase.png)は`./design`配下に置いています。
+- ER 図(`er.png`)・ドメインモデル図(`domain-model.png`)・ユースケース図(`usecase.png`)は`./design`配下に置いています。

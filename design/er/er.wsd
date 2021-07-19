@@ -1,0 +1,95 @@
+Entity Teams {
+  + id: varchar
+  --
+  name: varchar
+  created_at: data
+  updated_at: date
+}
+Entity BelongToTeams {
+  + id: varchar
+  --
+  team_id: varchar<<FK>>
+  pair_id: varchar<<FK>>
+  created_at: data
+  updated_at: date
+}
+note left
+* チームへの所属イベント
+end note
+Entity Pairs {
+  + id: varchar
+  --
+  name: varchar
+  created_at: data
+  updated_at: date
+}
+
+Entity BelongToPairs {
+  + id: varchar
+  --
+  pair_id: varchar<<FK>>
+  participant_id: varchar<<FK>>
+  created_at: data
+  updated_at: date
+}
+note left
+* ペアへの所属イベント
+end note
+Entity Participants {
+  + id: varchar
+  --
+  enrollment_status_id: varchar<<FK>>
+  name: varchar
+  email: varchar
+  created_at: data
+  updated_at: date
+}
+note right
+* 参加者の在籍ステータスを履歴として残す必要がないので多対1の関係にする
+end note
+Entity EnrollmentStatuses {
+  + id: varchar
+  --
+  name: varchar
+  created_at: data
+  updated_at: date
+}
+
+Entity Tasks {
+  + id: varchar
+  --
+  title: varchar
+  content: varchar
+  created_at: data
+  updated_at: date
+}
+
+Entity AssignTaskToParticipants {
+  + id: varchar
+  --
+  participant_id: varchar<<FK>>
+  task_id: varchar<<FK>>
+  task_status_id: varchar<<FK>>
+  created_at: data
+  updated_at: date
+}
+note right
+* 課題の進捗ステータスを履歴として残す必要がないので多対1の関係にする
+* 課題の担当者の設定イベント
+end note
+Entity TaskStatuses {
+  + id: varchar
+  --
+  name: varchar
+  created_at: data
+  updated_at: date
+}
+
+Teams ||--o{ BelongToTeams
+Pairs ||--o{ BelongToTeams
+Pairs ||--|{ BelongToPairs
+Participants ||--|{ BelongToPairs
+Participants }|--|| EnrollmentStatuses
+Participants ||--|{ AssignTaskToParticipants
+Tasks ||--O{ AssignTaskToParticipants
+AssignTaskToParticipants }|--|| TaskStatuses
