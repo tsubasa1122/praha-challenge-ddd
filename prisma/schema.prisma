@@ -13,3 +13,98 @@ model SomeData {
   required Boolean
   number Int @db.SmallInt
 }
+
+model Team {
+  id Int @id @default(autoincrement())
+  pairs BelongToTeams[]
+  name String @db.VarChar(255)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("teams")
+}
+
+model Pair {
+  id Int @id @default(autoincrement())
+  teams BelongToTeams[]
+  participants BelongToPairs[]
+  name Int @unique
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("pairs")
+}
+
+model BelongToTeams {
+  id Int @id @default(autoincrement())
+  team Team @relation(fields: [teamId], references: [id])
+  teamId Int @map("team_id")
+  pair Pair @relation(fields: [pairId], references: [id])
+  pairId Int @map("pair_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("belong_to_teams")
+}
+
+model BelongToPairs {
+  id Int @id @default(autoincrement())
+  pair Pair @relation(fields: [pairId], references: [id])
+  pairId Int @map("pair_id")
+  participant Participant @relation(fields: [participantId], references: [id])
+  participantId Int @map("participant_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("belong_to_pairs")
+}
+
+model EnrollmentStatus {
+  id Int @id @default(autoincrement())
+  participants Participant[]
+  name String @db.VarChar(255)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("enrollment_statuses")
+}
+
+model Participant {
+  id Int @id @default(autoincrement())
+  enrollmentStatus EnrollmentStatus @relation(fields: [enrollmentStatusId], references: [id])
+  enrollmentStatusId Int @map("enrollment_status_id")
+  paris BelongToPairs[]
+  assignTaskToParticipants AssignTaskToParticipants[]
+  name String @db.VarChar(255)
+  email String @db.VarChar(255) @unique
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("participants")
+}
+
+model AssignTaskToParticipants {
+  id Int @id @default(autoincrement())
+  task Task @relation(fields: [taskId], references: [id])
+  taskId Int @map("task_id")
+  taskStatus TaskStatus @relation(fields: [taskStatusId], references: [id])
+  taskStatusId Int @map("task_status_id")
+  participant Participant @relation(fields: [participantId], references: [id])
+  participantId Int @map("participant_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("assign_task_to_participants")
+}
+
+model TaskStatus {
+  id Int @id @default(autoincrement())
+  assignTaskToParticipants AssignTaskToParticipants[]
+  name String @db.VarChar(255)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("task_statuses")
+}
+
+model Task {
+  id Int @id @default(autoincrement())
+  assignTaskToParticipants AssignTaskToParticipants[]
+  title String @db.VarChar(255)
+  content String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("tasks")
+}
