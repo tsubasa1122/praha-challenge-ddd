@@ -52,7 +52,8 @@
   "dependencies": {
     "@prisma/client": "^2.27.0",
     "dotenv": "^10.0.0",
-    "express": "4.17.1"
+    "express": "4.17.1",
+    "express-promise-router": "^4.1.0"
   },
   "huskey": {
     "hooks": {
