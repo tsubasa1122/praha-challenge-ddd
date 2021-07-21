@@ -13,13 +13,14 @@ $ cd .docker
 $ docker-compose up -d
 ```
 
-### Migration
+### Migration and Seed
 
 ※ ORM に[Prisma](https://www.prisma.io/) を用いているので、マイグレーション実行後には prisma client(Query builder の役割を持つ)側にもカラムの変更を反映させる必要があります。
 
 ```bash
 $ yarn run migrate:dev (本番環境の場合はyarn migrate:prd)
 $ yarn run model-generate
+$ yarn run db:seed
 ```
 
 ### Test

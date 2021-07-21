@@ -19,6 +19,7 @@
     "lint:fix": "npm-run-all eslint:fix check-types format",
     "prepare": "husky install",
     "migrate:dev": "dotenv -e .local.env -- prisma migrate dev --preview-feature",
+    "db:seed:dev": "dotenv -e .local.env -- prisma db seed --preview-feature",
     "model-generate": "prisma generate",
     "migrate:dev:reset": "dotenv -e .local.env -- prisma migrate reset --preview-feature",
     "migrate:test": "dotenv -e .test.env -- prisma migrate reset --force --preview-feature",
