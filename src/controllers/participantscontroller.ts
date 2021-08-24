@@ -1,8 +1,14 @@
 import { PrismaClient } from '@prisma/client'
+import { Request, Response } from 'express'
 
+/* eslint-disable */
 export default class ParticipantsController {
-  // index(req: Request, res: Response) {
-  //   const prisma = new PrismaClient()
-  //   res.json({ message: 'hello world' })
-  // }
+  index = async (req: Request, res: Response) => {
+    // if (!isValid) {
+    //   res.sendStatus(400)
+    //   return
+    // }
+
+    res.send('yes!!')
+  }
 }

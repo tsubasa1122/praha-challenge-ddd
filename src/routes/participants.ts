@@ -1,7 +1,10 @@
-import Router from 'express-promise-router'
-// import ParticipantsController from '../controllers/participantscontroller'
-const router = Router()
-// const participantsController = new ParticipantsController()
-// router.get('/', participantsController.index)
+import PromiseRouter from 'express-promise-router'
+import ParticipantsController from '../controllers/participantscontroller'
 
-export default router
+/* eslint-disable */
+const participantsRouter = PromiseRouter()
+const participantsController = new ParticipantsController()
+participantsRouter.get('/', participantsController.index)
+//  router.post('/', participantsController.create)
+
+export default participantsRouter
