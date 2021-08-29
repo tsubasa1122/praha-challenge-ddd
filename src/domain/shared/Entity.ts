@@ -1,25 +1,14 @@
-import { CreatedAt } from './CreatedAt'
 import { Identifier } from './Identifier'
-import { UpdatedAt } from './UpdatedAt'
 const isEntity = (v: any): v is Entity<any> => {
   return v instanceof Entity
 }
 
 export abstract class Entity<T> {
   protected readonly _id?: Identifier<number>
-  protected readonly _createdAt?: CreatedAt
-  protected readonly _updatedAt?: UpdatedAt
   public readonly props: T
 
-  constructor(
-    props: T,
-    id?: Identifier<number>,
-    createdAt?: CreatedAt,
-    updatedAt?: UpdatedAt,
-  ) {
+  constructor(props: T, id?: Identifier<number>) {
     this._id = id
-    this._createdAt = createdAt
-    this._updatedAt = updatedAt
     this.props = props
   }
 
