@@ -1,9 +1,9 @@
-export class Identifier<T> {
-  constructor(private value?: T) {
+export class Identifier {
+  constructor(private value?: number) {
     this.value = value
   }
 
-  equals(id?: Identifier<T>): boolean {
+  equals(id?: Identifier): boolean {
     if (id === null || id === undefined) return false
     if (!(id instanceof this.constructor)) return false
     if (!this.value) return false
@@ -11,7 +11,7 @@ export class Identifier<T> {
     return id.toValue() === this.value
   }
 
-  toValue(): T | undefined {
+  toValue(): number | undefined {
     if (!this.value) return undefined
 
     return this.value
