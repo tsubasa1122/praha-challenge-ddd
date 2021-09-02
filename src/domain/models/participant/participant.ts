@@ -13,14 +13,20 @@ export class Participant extends AggregateRoot<ParticipantAttributes> {
     super(props, id)
   }
 
-  private static validate(props: ParticipantAttributes): void | never {
-    if (!props.name) throw new Error('名前が設定されていません。')
-    if (!props.email) throw new Error('メールアドレスが設定されていません。')
+  private static validate(params: {
+    name: string
+    email: string
+  }): void | never {
+    if (!params.name) throw new Error('名前が設定されていません。')
+    if (!params.email) throw new Error('メールアドレスが設定されていません。')
   }
 
-  public static create(props: ParticipantAttributes): Participant {
-    this.validate(props)
-    return new Participant(props)
+  public static create(params: { name: string; email: string }): Participant {
+    this.validate(params)
+    return new Participant({
+      ...params,
+      enrollmentStatus: EnrollmentStatus.create(),
+    })
   }
 
   public static recreate(

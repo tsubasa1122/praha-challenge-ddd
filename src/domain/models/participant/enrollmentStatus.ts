@@ -15,9 +15,11 @@ interface EnrollmentStatusAttribute {
 }
 
 export default class EnrollmentStatus extends Entity<EnrollmentStatusAttribute> {
-  public static create(props: EnrollmentStatusAttribute): EnrollmentStatus {
-    const id = this.setEnrollmentId(props.name)
-    return new EnrollmentStatus(props, new Identifier(id))
+  // createは命名微妙？
+  public static create(): EnrollmentStatus {
+    const name = STATUS_NAME.ACTIVE
+    const id = this.setEnrollmentId(name)
+    return new EnrollmentStatus({ name }, new Identifier(id))
   }
 
   private constructor(props: EnrollmentStatusAttribute, id?: Identifier) {
