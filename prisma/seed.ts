@@ -22,14 +22,35 @@ const tasks: Prisma.TaskCreateManyInput[] = [
   },
 ]
 
+const enrollmentStatus: Prisma.EnrollmentStatusCreateManyInput[] = [
+  {
+    id: 1,
+    name: 'active',
+  },
+  {
+    id: 2,
+    name: 'inactive',
+  },
+  {
+    id: 3,
+    name: 'withdrawn',
+  },
+]
+
 // TODO: 複数upsert出来る方法を探す
 async function main() {
-  const created_task = await prisma.task.createMany({
+  const createdTask = await prisma.task.createMany({
     data: tasks,
     skipDuplicates: true,
   })
 
-  console.log(created_task)
+  const createdEnrollmentStatus = await prisma.enrollmentStatus.createMany({
+    data: enrollmentStatus,
+    skipDuplicates: true,
+  })
+
+  console.log(createdTask)
+  console.log(createdEnrollmentStatus)
 }
 
 main()
