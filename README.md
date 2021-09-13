@@ -77,3 +77,9 @@ https://qiita.com/kabosu3d/items/680728362314f51bdcb0#3-%E3%82%A8%E3%83%A9%E3%83
   - そもそも Javascript の仕様なので回避策がなさそう？
     - 一旦はガード節を用いて、Error クラスのインスタンスなら指定のメッセージを返すような実装にした
   - https://labs.septeni.co.jp/entry/2020/07/23/100000
+  - https://github.com/Microsoft/TypeScript/issues/20024
+  - https://stackoverflow.com/questions/54649465/how-to-do-try-catch-and-finally-statements-in-typescript/54649617
+  - https://github.com/express-promise-router/express-promise-router/issues/230
+- テスト時の prisma のモック化をどうしているのか？
+  - ドキュメントに従って DI する実装にしてみた
+  - https://www.prisma.io/docs/guides/testing/unit-testing#mocking-the-prisma-client
