@@ -69,3 +69,11 @@ https://qiita.com/kabosu3d/items/680728362314f51bdcb0#3-%E3%82%A8%E3%83%A9%E3%83
 - DTO 的なクラスを作るべきか？
 - prismaClient のインスタンスをどこで生成するか？
 - インスタンス参照しているエンティティの生成方法
+- request.body に型を付ける方法を調べる
+  - 今は as を使ってアサーションしている
+  - params にしか対応していなさそう？https://blog-mk2.d-yama7.com/2020/03/20200314_express-reqres-generics/
+  - https://stackoverflow.com/questions/48027563/typescript-type-annotation-for-res-body
+- catch e <- の error の型が any になってしまう問題をどうしたらいいのか
+  - そもそも Javascript の仕様なので回避策がなさそう？
+    - 一旦はガード節を用いて、Error クラスのインスタンスなら指定のメッセージを返すような実装にした
+  - https://labs.septeni.co.jp/entry/2020/07/23/100000

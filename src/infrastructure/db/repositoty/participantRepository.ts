@@ -12,7 +12,7 @@ export default class ParticipantRepository implements IParticipantRepository {
       updatedAt: new Date(),
       enrollmentStatus: {
         connect: {
-          id: participant.props.enrollmentStatus.id,
+          name: participant.props.enrollmentStatus.props.name,
         },
       },
     }
