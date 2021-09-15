@@ -83,3 +83,6 @@ https://qiita.com/kabosu3d/items/680728362314f51bdcb0#3-%E3%82%A8%E3%83%A9%E3%83
 - テスト時の prisma のモック化をどうしているのか？
   - ドキュメントに従って DI する実装にしてみた
   - https://www.prisma.io/docs/guides/testing/unit-testing#mocking-the-prisma-client
+  - 実際のテスト DB を使ってテストしたい。データのリセットはどうする？
+    - そもそも DB のデータを使っている時点で結合テスト？
+    - repository のテストをしたい場合は結合テストとして扱った方が良いのだろうか？

@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { Request, Response, NextFunction } from 'express'
-import ParticipantRepository from 'src/infrastructure/db/repositoty/participantRepository'
+import ParticipantRepository from 'src/infrastructure/db/repository/participantRepository'
 import CreateParticipant from 'src/usecase/participant/createParticipant'
 
 type CreateParticipantParams = {
@@ -18,7 +18,9 @@ export default class ParticipantsController {
     try {
       // Question request.bodyに肩を付けられないか調べる
       const { name, email } = req.body as CreateParticipantParams
-      const participantRepository = new ParticipantRepository(this.prismaClient)
+      const participantRepository = new ParticipantRepository({
+        prisma: this.prismaClient,
+      })
       const createParticipantUsecase = new CreateParticipant(
         participantRepository,
       )

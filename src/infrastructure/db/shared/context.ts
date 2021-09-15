@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
-import { mockDeep } from 'jest-mock-extended'
-import { MockProxy } from 'jest-mock-extended'
+import { mockDeep, MockProxy } from 'jest-mock-extended'
 
+// domainやusecaseのテストではテストデータを作成する必要はないがschemaの型を利用したいのでPrismaClientのモックを作った
 export type Context = {
   prisma: PrismaClient
 }
