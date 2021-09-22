@@ -1,7 +1,5 @@
 import Participant from 'src/domain/models/participant/participant'
-import EnrollmentStatus, {
-  STATUS_NAME,
-} from 'src/domain/models/participant/enrollmentStatus'
+import EnrollmentStatus from 'src/domain/models/participant/enrollmentStatus'
 import { Identifier } from 'src/domain/shared/Identifier'
 
 describe('function create()', () => {
