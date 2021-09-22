@@ -86,3 +86,30 @@ https://qiita.com/kabosu3d/items/680728362314f51bdcb0#3-%E3%82%A8%E3%83%A9%E3%83
   - 実際のテスト DB を使ってテストしたい。データのリセットはどうする？
     - そもそも DB のデータを使っている時点で結合テスト？
     - repository のテストをしたい場合は結合テストとして扱った方が良いのだろうか？
+- TODO: faker 的なものを入れる
+- パラメータのテストについて
+  - 値が undefined になる場合のテストはした方がいいのか？
+  - undefined になり得るパターンがイマイチ分かっていない...
+  - 空文字(""), null はテスト出来ているので問題ない？
+- インスタンス参照しているオブジェクトを recreate する際に参照先のクラスの recreate メソッドを強制的に呼ぶ方法は何かある？
+
+  - recreate 時に渡すパラメータを参照先のオブジェクトを生成するために必要となるプリミティブな値を渡すようにし、recreate 内で recreate メソッドを呼ぶようにする？
+
+  ```ts
+  interface ParticipantRecreateParams {
+    name: string
+    email: string
+    enrollmentStatus: {
+      name: string
+    }
+  }
+
+  public static recreate(
+    props: ParticipantRecreateParams,
+    id: Identifier,
+  ): Participant {
+    const enrollmentStatus = EnrollmentStatus.recreate(props.enrollmentStatus)
+    const { name, email } = props
+    return new Participant({name, email, enrollmentStatus}, id)
+  }
+  ```

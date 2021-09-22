@@ -1,5 +1,5 @@
 import { IParticipantRepository } from 'src/domain/models/participant/IParticipantRepository'
-import { Participant } from 'src/domain/models/participant/participant'
+import Participant from 'src/domain/models/participant/participant'
 
 export default class CreateParticipant {
   constructor(private participantRepository: IParticipantRepository) {}

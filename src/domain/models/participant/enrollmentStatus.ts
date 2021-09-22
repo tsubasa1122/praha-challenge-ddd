@@ -4,7 +4,8 @@ import { Identifier } from 'src/domain/shared/Identifier'
 // TODO: 型のutils系に移動させる
 type valueOf<T> = T[keyof T]
 
-const STATUS_NAME = {
+// TODO: namespaceを定義する
+export const STATUS_NAME = {
   ACTIVE: 'active',
   INACTIVE: 'inactive',
   WITHDRAWN: 'withdrawn',
@@ -14,12 +15,22 @@ interface EnrollmentStatusAttribute {
   name: valueOf<typeof STATUS_NAME>
 }
 
+// インスタンス参照にするとidを持たせないといけなくなるので、ValueObjectにしても良いかも？
 export default class EnrollmentStatus extends Entity<EnrollmentStatusAttribute> {
   // createは命名微妙？
   public static create(): EnrollmentStatus {
     const name = STATUS_NAME.ACTIVE
     // const id = this.setEnrollmentId(name)
     return new EnrollmentStatus({ name })
+  }
+
+  public static recreate(
+    props: EnrollmentStatusAttribute,
+    id: Identifier,
+  ): EnrollmentStatus {
+    const name = props.name
+    // const id = this.setEnrollmentId(name)
+    return new EnrollmentStatus({ name }, id)
   }
 
   private constructor(props: EnrollmentStatusAttribute, id?: Identifier) {

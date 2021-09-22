@@ -6,7 +6,8 @@
     "jest.config.js",
     "jest.integration.config.js",
     "testUtil/*",
-    "prisma/**/*.ts"
+    "prisma/**/*.ts",
+    "__tests__/**/*.ts"
   ],
   "exclude": [
     "node_modules",

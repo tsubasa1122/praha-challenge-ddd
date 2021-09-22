@@ -10,6 +10,7 @@ export const prisma = new PrismaClient({
 })
 
 // DBのデータをテスト毎に削除する
+// ref: https://zenn.dev/5t111111/scraps/f9002ee51a588a#comment-c53c39889f17b4
 // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-member-access
 const exec = util.promisify(require('child_process').exec)
 

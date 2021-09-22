@@ -1,6 +1,6 @@
 import { Context } from '../shared/context'
 import { IParticipantRepository } from 'src/domain/models/participant/IParticipantRepository'
-import { Participant } from 'src/domain/models/participant/participant'
+import Participant from 'src/domain/models/participant/participant'
 
 export default class ParticipantRepository implements IParticipantRepository {
   constructor(private ctx: Context) {}

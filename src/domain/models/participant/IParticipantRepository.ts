@@ -1,4 +1,4 @@
-import { Participant } from './participant'
+import Participant from './participant'
 export interface IParticipantRepository {
   save(partipant: Participant): Promise<void>
 }

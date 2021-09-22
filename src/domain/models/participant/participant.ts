@@ -8,7 +8,12 @@ interface ParticipantAttributes {
   enrollmentStatus: EnrollmentStatus
 }
 
-export class Participant extends AggregateRoot<ParticipantAttributes> {
+// type ParticipantRecreateParams = Omit<
+//   ParticipantAttributes,
+//   'enrollmentStatus'
+// > & { enrollmentStatus: { name: string; id: Identifier } }
+
+export default class Participant extends AggregateRoot<ParticipantAttributes> {
   private constructor(props: ParticipantAttributes, id?: Identifier) {
     super(props, id)
   }
@@ -30,9 +35,10 @@ export class Participant extends AggregateRoot<ParticipantAttributes> {
   }
 
   public static recreate(
-    props: ParticipantAttributes,
+    params: ParticipantAttributes,
     id: Identifier,
   ): Participant {
-    return new Participant(props, id)
+    this.validate(params)
+    return new Participant(params, id)
   }
 }
