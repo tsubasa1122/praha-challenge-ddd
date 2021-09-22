@@ -1,4 +1,6 @@
-import EnrollmentStatus from 'src/domain/models/participant/enrollmentStatus'
+import EnrollmentStatus, {
+  STATUS_NAME,
+} from 'src/domain/models/participant/enrollmentStatus'
 import { Identifier } from 'src/domain/shared/Identifier'
 
 describe('function create()', () => {
@@ -16,10 +18,12 @@ describe('function create()', () => {
 describe('function recreate()', () => {
   it('ステータス名「active」でインスタンスが生成されること', () => {
     const identifier = new Identifier(1)
-    expect(EnrollmentStatus.recreate({ name: 'inactive' }, identifier)).toEqual(
+    expect(
+      EnrollmentStatus.recreate({ name: STATUS_NAME.INACTIVE }, identifier),
+    ).toEqual(
       expect.objectContaining({
         props: {
-          name: 'inactive',
+          name: STATUS_NAME.INACTIVE,
         },
       }),
     )
