@@ -38,4 +38,31 @@ export default class ParticipantsController {
       next()
     }
   }
+
+  show = async (
+    req: Request<{ id: string }>,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      const id = req.params.id
+      const participantRepository = new ParticipantRepository({
+        prisma: this.prismaClient,
+      })
+      const data = await participantRepository.findById(Number(id))
+      if (!data) throw new Error('参加者が見つかりません。')
+      res.status(200).send({
+        name: data.name,
+        email: data.email,
+      })
+    } catch (e) {
+      if (e instanceof Error) {
+        res.status(404).send({ message: e.message })
+      } else {
+        res.status(500)
+      }
+    } finally {
+      next()
+    }
+  }
 }

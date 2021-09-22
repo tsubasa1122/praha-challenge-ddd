@@ -29,10 +29,16 @@ export default class ParticipantRepository implements IParticipantRepository {
   ): Promise<PrismaParticipant | null> {
     // findUniqueはv 2.12.0以降はfindOneにreplaceされたと書かれているが保管されない...
     // https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#model-queries
-    const data = await this.ctx.prisma.participant.findUnique({
+    return await this.ctx.prisma.participant.findUnique({
       where: { email: participant.props.email },
     })
+  }
 
-    return data
+  // 例外発生するメソッドの命名規則を作る
+  // idがNaNの場合どうなるのか調べる
+  async findById(id: number): Promise<PrismaParticipant | null> {
+    return await this.ctx.prisma.participant.findUnique({
+      where: { id },
+    })
   }
 }

@@ -113,3 +113,7 @@ https://qiita.com/kabosu3d/items/680728362314f51bdcb0#3-%E3%82%A8%E3%83%A9%E3%83
     return new Participant({name, email, enrollmentStatus}, id)
   }
   ```
+
+- get 系の処理で usecase を作るべきか？
+  - データを取得するだけならいらなそう？
+- QueryService のインターフェイスはどこに配置する？
