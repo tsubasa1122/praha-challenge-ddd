@@ -1,7 +1,10 @@
 import { Context } from '../shared/context'
 import { IParticipantRepository } from 'src/domain/models/participant/IParticipantRepository'
 import Participant from 'src/domain/models/participant/participant'
-import { Participant as PrismaParticipant } from 'node_modules/.prisma/client'
+import EnrollmentStatus, {
+  EnrollmentStatusAttribute,
+} from 'src/domain/models/participant/enrollmentStatus'
+import { Identifier } from 'src/domain/shared/Identifier'
 
 export default class ParticipantRepository implements IParticipantRepository {
   constructor(private ctx: Context) {}
@@ -24,21 +27,52 @@ export default class ParticipantRepository implements IParticipantRepository {
   }
 
   //  重複チェック用の独自メソッドにする？
-  async findByEmail(
-    participant: Participant,
-  ): Promise<PrismaParticipant | null> {
+  async findByEmail(participant: Participant): Promise<Participant | null> {
     // findUniqueはv 2.12.0以降はfindOneにreplaceされたと書かれているが保管されない...
     // https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#model-queries
-    return await this.ctx.prisma.participant.findUnique({
+    const data = await this.ctx.prisma.participant.findUnique({
       where: { email: participant.props.email },
+      include: {
+        enrollmentStatus: true,
+      },
     })
+    if (!data) return null
+
+    const enrollmentStatusInstance = EnrollmentStatus.recreate(
+      { name: data.enrollmentStatus.name } as EnrollmentStatusAttribute,
+      new Identifier(data.enrollmentStatusId),
+    )
+
+    const participantParams = {
+      name: data.name,
+      email: data.email,
+      enrollmentStatus: enrollmentStatusInstance,
+    }
+    return Participant.recreate(participantParams, new Identifier(data.id))
   }
 
   // 例外発生するメソッドの命名規則を作る
   // idがNaNの場合どうなるのか調べる
-  async findById(id: number): Promise<PrismaParticipant | null> {
-    return await this.ctx.prisma.participant.findUnique({
+  async findById(id: number): Promise<Participant | null> {
+    const data = await this.ctx.prisma.participant.findUnique({
       where: { id },
+      include: {
+        enrollmentStatus: true,
+      },
     })
+
+    if (!data) return null
+
+    const enrollmentStatusInstance = EnrollmentStatus.recreate(
+      { name: data.enrollmentStatus.name } as EnrollmentStatusAttribute,
+      new Identifier(data.enrollmentStatusId),
+    )
+
+    const participantParams = {
+      name: data.name,
+      email: data.email,
+      enrollmentStatus: enrollmentStatusInstance,
+    }
+    return Participant.recreate(participantParams, new Identifier(data.id))
   }
 }

@@ -11,7 +11,7 @@ export const STATUS_NAME = {
   WITHDRAWN: 'withdrawn',
 } as const
 
-interface EnrollmentStatusAttribute {
+export interface EnrollmentStatusAttribute {
   name: valueOf<typeof STATUS_NAME>
 }
 

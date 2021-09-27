@@ -10,8 +10,9 @@ import ParticipantsController from '../controllers/participantscontroller'
 const participantsRouter = PromiseRouter()
 const prismaClient = new PrismaClient()
 const participantsController = new ParticipantsController(prismaClient)
-participantsRouter.get('/', participantsController.create)
+participantsRouter.post('/', participantsController.create)
 participantsRouter.get('/:id', participantsController.show)
+participantsRouter.get('/', participantsController.index)
 //  router.post('/', participantsController.create)
 
 export default participantsRouter

@@ -52,8 +52,35 @@ export default class ParticipantsController {
       const data = await participantRepository.findById(Number(id))
       if (!data) throw new Error('参加者が見つかりません。')
       res.status(200).send({
-        name: data.name,
-        email: data.email,
+        name: data.props.name,
+        email: data.props.email,
+      })
+    } catch (e) {
+      if (e instanceof Error) {
+        res.status(404).send({ message: e.message })
+      } else {
+        res.status(500)
+      }
+    } finally {
+      next()
+    }
+  }
+
+  index = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      const id = req.params.id
+      const participantRepository = new ParticipantRepository({
+        prisma: this.prismaClient,
+      })
+      const data = await participantRepository.findById(Number(id))
+      if (!data) throw new Error('参加者が見つかりません。')
+      res.status(200).send({
+        name: data.props.name,
+        email: data.props.email,
       })
     } catch (e) {
       if (e instanceof Error) {
