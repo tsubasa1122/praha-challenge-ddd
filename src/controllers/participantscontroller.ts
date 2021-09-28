@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { Request, Response, NextFunction } from 'express'
+import ParticipantQS from 'src/infrastructure/db/queryService/ParticipantQS'
 import ParticipantRepository from 'src/infrastructure/db/repository/participantRepository'
 import CreateParticipant from 'src/usecase/participant/createParticipant'
 
@@ -72,16 +73,12 @@ export default class ParticipantsController {
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const id = req.params.id
-      const participantRepository = new ParticipantRepository({
+      const page = req.query?.page
+      const participantQS = new ParticipantQS({
         prisma: this.prismaClient,
       })
-      const data = await participantRepository.findById(Number(id))
-      if (!data) throw new Error('参加者が見つかりません。')
-      res.status(200).send({
-        name: data.props.name,
-        email: data.props.email,
-      })
+      const participants = await participantQS.getAll(Number(page))
+      res.status(200).send(participants)
     } catch (e) {
       if (e instanceof Error) {
         res.status(404).send({ message: e.message })

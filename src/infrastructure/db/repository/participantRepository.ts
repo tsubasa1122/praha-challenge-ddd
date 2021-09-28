@@ -9,6 +9,7 @@ import { Identifier } from 'src/domain/shared/Identifier'
 export default class ParticipantRepository implements IParticipantRepository {
   constructor(private ctx: Context) {}
   // TODO: 更新処理も行えるようにする
+  // TOOD: insertやupdateなどのメソッドに命名を変更する
   async save(participant: Participant): Promise<void> {
     // Question: participant.props.enrollmentStatus.idがundefinedの場合、どんな挙動する？
     const data = {
