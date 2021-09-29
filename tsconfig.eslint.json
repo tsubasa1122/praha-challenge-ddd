@@ -5,10 +5,12 @@
     ".eslintrc.js",
     "jest.config.js",
     "jest.integration.config.js",
-    "testUtil/*"
+    "testUtil/*",
+    "prisma/**/*.ts",
+    "__tests__/**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
   ]
 }

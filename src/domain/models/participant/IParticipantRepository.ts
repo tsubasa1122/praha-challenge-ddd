@@ -1,0 +1,6 @@
+import Participant from './participant'
+export interface IParticipantRepository {
+  save(participant: Participant): Promise<void>
+  findByEmail(participant: Participant): Promise<Participant | null>
+  findById(id: number): Promise<Participant | null>
+}
