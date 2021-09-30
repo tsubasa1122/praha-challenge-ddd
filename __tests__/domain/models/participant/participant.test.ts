@@ -1,6 +1,6 @@
 import Participant from 'src/domain/models/participant/participant'
 import EnrollmentStatus, {
-  STATUS_NAME,
+  ENROLLMENT_STATUS_NAME,
 } from 'src/domain/models/participant/enrollmentStatus'
 import { Identifier } from 'src/domain/shared/Identifier'
 
@@ -55,7 +55,7 @@ describe('function recreate()', () => {
         name: 'テスト名',
         email: '',
         enrollmentStatus: EnrollmentStatus.recreate(
-          { name: STATUS_NAME.ACTIVE },
+          { name: ENROLLMENT_STATUS_NAME.ACTIVE },
           identifier,
         ),
       }
@@ -72,7 +72,7 @@ describe('function recreate()', () => {
         name: '',
         email: 'test@example.com',
         enrollmentStatus: EnrollmentStatus.recreate(
-          { name: STATUS_NAME.ACTIVE },
+          { name: ENROLLMENT_STATUS_NAME.ACTIVE },
           identifier,
         ),
       }
@@ -89,7 +89,7 @@ describe('function recreate()', () => {
         name: 'テスト名',
         email: 'test@example.com',
         enrollmentStatus: EnrollmentStatus.recreate(
-          { name: STATUS_NAME.INACTIVE },
+          { name: ENROLLMENT_STATUS_NAME.INACTIVE },
           identifier,
         ),
       }
@@ -101,7 +101,7 @@ describe('function recreate()', () => {
             email: 'test@example.com',
             enrollmentStatus: {
               _id: { value: 1 },
-              props: { name: STATUS_NAME.INACTIVE },
+              props: { name: ENROLLMENT_STATUS_NAME.INACTIVE },
             },
           },
         }),

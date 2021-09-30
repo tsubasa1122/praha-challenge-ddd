@@ -1,4 +1,4 @@
-import { STATUS_NAME } from 'src/domain/models/participant/enrollmentStatus'
+import { ENROLLMENT_STATUS_NAME } from 'src/domain/models/participant/enrollmentStatus'
 
 export class ParticipantDTO {
   public readonly id: number
@@ -20,11 +20,11 @@ export class ParticipantDTO {
 
   private enrollmentStatusName(name: string): string {
     switch (name) {
-      case STATUS_NAME.ACTIVE:
+      case ENROLLMENT_STATUS_NAME.ACTIVE:
         return '在籍中'
-      case STATUS_NAME.INACTIVE:
+      case ENROLLMENT_STATUS_NAME.INACTIVE:
         return '休会中'
-      case STATUS_NAME.WITHDRAWN:
+      case ENROLLMENT_STATUS_NAME.WITHDRAWN:
         return '退会済'
       default:
         return '在籍中'

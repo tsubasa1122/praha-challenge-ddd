@@ -1,5 +1,5 @@
 import EnrollmentStatus, {
-  STATUS_NAME,
+  ENROLLMENT_STATUS_NAME,
 } from 'src/domain/models/participant/enrollmentStatus'
 import { Identifier } from 'src/domain/shared/Identifier'
 
@@ -19,11 +19,14 @@ describe('function recreate()', () => {
   it('ステータス名「active」でインスタンスが生成されること', () => {
     const identifier = new Identifier(1)
     expect(
-      EnrollmentStatus.recreate({ name: STATUS_NAME.INACTIVE }, identifier),
+      EnrollmentStatus.recreate(
+        { name: ENROLLMENT_STATUS_NAME.INACTIVE },
+        identifier,
+      ),
     ).toEqual(
       expect.objectContaining({
         props: {
-          name: STATUS_NAME.INACTIVE,
+          name: ENROLLMENT_STATUS_NAME.INACTIVE,
         },
       }),
     )

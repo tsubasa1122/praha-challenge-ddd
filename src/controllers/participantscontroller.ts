@@ -1,7 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import { Request, Response, NextFunction } from 'express'
-import ParticipantQS from 'src/infrastructure/db/queryService/ParticipantQS'
+import ParticipantQS from 'src/infrastructure/db/queryService/participantQS'
 import ParticipantRepository from 'src/infrastructure/db/repository/participantRepository'
+import TaskRepository from 'src/infrastructure/db/repository/taskRepository'
 import CreateParticipant from 'src/usecase/participant/createParticipant'
 
 type CreateParticipantParams = {
@@ -22,8 +23,13 @@ export default class ParticipantsController {
       const participantRepository = new ParticipantRepository({
         prisma: this.prismaClient,
       })
+      const taskRepository = new TaskRepository({
+        prisma: this.prismaClient,
+      })
+
       const createParticipantUsecase = new CreateParticipant(
         participantRepository,
+        taskRepository,
       )
       await createParticipantUsecase.execute({ name, email })
       res.status(200).send('Hello World')
