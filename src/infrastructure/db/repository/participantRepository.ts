@@ -39,7 +39,7 @@ export default class ParticipantRepository implements IParticipantRepository {
     })
     if (!data) return null
 
-    const enrollmentStatusInstance = EnrollmentStatus.recreate(
+    const enrollmentStatus = EnrollmentStatus.recreate(
       { name: data.enrollmentStatus.name } as EnrollmentStatusAttribute,
       new Identifier(data.enrollmentStatusId),
     )
@@ -47,7 +47,7 @@ export default class ParticipantRepository implements IParticipantRepository {
     const participantParams = {
       name: data.name,
       email: data.email,
-      enrollmentStatus: enrollmentStatusInstance,
+      enrollmentStatus: enrollmentStatus,
     }
     return Participant.recreate(participantParams, new Identifier(data.id))
   }
@@ -75,5 +75,29 @@ export default class ParticipantRepository implements IParticipantRepository {
       enrollmentStatus: enrollmentStatusInstance,
     }
     return Participant.recreate(participantParams, new Identifier(data.id))
+  }
+
+  async getAll(): Promise<Participant[]> {
+    const participantDatas = await this.ctx.prisma.participant.findMany({
+      include: {
+        enrollmentStatus: true,
+      },
+    })
+    if (!participantDatas) return []
+
+    return participantDatas.map((data) => {
+      const enrollmentStatus = EnrollmentStatus.recreate(
+        { name: data.enrollmentStatus.name } as EnrollmentStatusAttribute,
+        new Identifier(data.enrollmentStatus.id),
+      )
+
+      const participantParams = {
+        name: data.name,
+        email: data.email,
+        enrollmentStatus: enrollmentStatus,
+      }
+
+      return Participant.recreate(participantParams, new Identifier(data.id))
+    })
   }
 }

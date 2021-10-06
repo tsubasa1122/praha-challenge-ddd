@@ -11,6 +11,10 @@ interface TaskAttributes {
 }
 
 export default class Task extends AggregateRoot<TaskAttributes> {
+  public static create(params: TaskAttributes): Task {
+    return new Task(params)
+  }
+
   public static recreate(params: TaskAttributes, id: Identifier): Task {
     return new Task(params, id)
   }
@@ -20,7 +24,7 @@ export default class Task extends AggregateRoot<TaskAttributes> {
     this.props.participantId = participant.id
   }
 
-  private constructor(props: TaskAttributes, id: Identifier) {
+  private constructor(props: TaskAttributes, id?: Identifier) {
     super(props, id)
   }
 }

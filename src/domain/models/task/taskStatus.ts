@@ -13,6 +13,10 @@ export interface TaskStatusAttribute {
 }
 
 export default class TaskStatus extends Entity<TaskStatusAttribute> {
+  public static create(params: TaskStatusAttribute): TaskStatus {
+    return new TaskStatus({ ...params })
+  }
+
   public static recreate(
     params: TaskStatusAttribute,
     id: Identifier,
@@ -24,7 +28,7 @@ export default class TaskStatus extends Entity<TaskStatusAttribute> {
     this.props.name = TASK_STATUS_NAME.NOT_STARTED
   }
 
-  private constructor(props: TaskStatusAttribute, id: Identifier) {
+  private constructor(props: TaskStatusAttribute, id?: Identifier) {
     super(props, id)
   }
 }

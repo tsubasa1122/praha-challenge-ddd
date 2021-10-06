@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express'
 import ParticipantQS from 'src/infrastructure/db/queryService/participantQS'
 import ParticipantRepository from 'src/infrastructure/db/repository/participantRepository'
 import TaskRepository from 'src/infrastructure/db/repository/taskRepository'
-import CreateParticipant from 'src/usecase/participant/createParticipant'
+import CreateParticipantUseCase from 'src/usecase/participant/createParticipantUseCase'
 
 type CreateParticipantParams = {
   name: string
@@ -27,7 +27,7 @@ export default class ParticipantsController {
         prisma: this.prismaClient,
       })
 
-      const createParticipantUsecase = new CreateParticipant(
+      const createParticipantUsecase = new CreateParticipantUseCase(
         participantRepository,
         taskRepository,
       )

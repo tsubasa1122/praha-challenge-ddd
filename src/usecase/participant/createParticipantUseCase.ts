@@ -4,7 +4,7 @@ import { ITaskRepository } from 'src/domain/models/task/ITaksRepository'
 import checkEmailAlreadyExistsService from 'src/domain/services/participant/checkEmailAlreadyExistsService'
 
 // TODO: 複数集約間の整合性を保つためにトランザクションを貼る
-export default class CreateParticipant {
+export default class CreateParticipantUseCase {
   constructor(
     private participantRepository: IParticipantRepository,
     private taskRepository: ITaskRepository,
