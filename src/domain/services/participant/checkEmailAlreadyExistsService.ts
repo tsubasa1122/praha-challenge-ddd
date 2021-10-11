@@ -6,11 +6,24 @@ export default class checkEmailAlreadyExistsService {
     participant: Participant,
     participantRepository: IParticipantRepository,
   ): Promise<false | never> {
-    const data = await participantRepository.findByEmail(participant)
+    const service = new checkEmailAlreadyExistsService(
+      participant,
+      participantRepository,
+    )
+
+    const data = await service.participantRepository.findByEmail(
+      service.participant,
+    )
+
     if (data) {
       throw new Error('参加者は既に登録されています。')
     } else {
       return false
     }
   }
+
+  private constructor(
+    private participant: Participant,
+    private participantRepository: IParticipantRepository,
+  ) {}
 }

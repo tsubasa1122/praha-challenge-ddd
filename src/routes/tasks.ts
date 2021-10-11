@@ -7,7 +7,6 @@ import TasksController from 'src/controllers/tasksController'
 const tasksRouter = PromiseRouter()
 const prismaClient = new PrismaClient()
 const tasksController = new TasksController(prismaClient)
-// tasksRouter.post('/', tasksController.create)
-// tasksRouter.put('/:id', tasksController.update)
+tasksRouter.post('/', tasksController.create)
 
 export default tasksRouter

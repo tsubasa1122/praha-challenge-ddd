@@ -14,7 +14,6 @@ export default class CreateParticipantUseCase {
   async execute(params: { name: string; email: string }): Promise<void> {
     const participant = Participant.create(params)
 
-    // constructorで渡した方がいいかも？
     await checkEmailAlreadyExistsService.execute(
       participant,
       this.participantRepository,

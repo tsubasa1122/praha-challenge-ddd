@@ -1,7 +1,7 @@
 import { AggregateRoot } from 'src/domain/shared/AggregateRoot'
 import { Identifier } from 'src/domain/shared/Identifier'
 import Participant from '../participant/participant'
-import TaskStatus from './taskStatus'
+import TaskStatus, { TaskStatusAttribute } from './taskStatus'
 
 interface TaskAttributes {
   title: string
@@ -11,8 +11,15 @@ interface TaskAttributes {
 }
 
 export default class Task extends AggregateRoot<TaskAttributes> {
-  public static create(params: TaskAttributes): Task {
-    return new Task(params)
+  public static create(params: {
+    title: string
+    content: string
+    taskStatus: { name: string }
+  }): Task {
+    return new Task({
+      ...params,
+      taskStatus: TaskStatus.create(params.taskStatus as TaskStatusAttribute),
+    })
   }
 
   public static recreate(params: TaskAttributes, id: Identifier): Task {

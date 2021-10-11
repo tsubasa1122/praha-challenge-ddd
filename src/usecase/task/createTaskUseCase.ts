@@ -1,9 +1,6 @@
 import { IParticipantRepository } from 'src/domain/models/participant/IParticipantRepository'
 import { ITaskRepository } from 'src/domain/models/task/ITaksRepository'
 import Task from 'src/domain/models/task/task'
-import TaskStatus, {
-  TaskStatusAttribute,
-} from 'src/domain/models/task/taskStatus'
 
 export default class CreateTaskUseCase {
   constructor(
@@ -11,17 +8,17 @@ export default class CreateTaskUseCase {
     private taskRepository: ITaskRepository,
   ) {}
 
-  // async execute(params: {
-  //   title: string
-  //   content: string
-  //   taskStatus: { name: string }
-  // }): Promise<void> {
-  // const taskStatus = TaskStatus.create(name: params.taskStatus.name as TaskStatusAttribute)
-  // const taskParams = {
-  //   title: params.title,
-  //   content: params.content,
-  //   taskStatus: taskStatus,
-  // }
-  // const task = Task.create({ ...taskParams })
-  // }
+  async execute(params: {
+    title: string
+    content: string
+    taskStatus: { name: string }
+  }): Promise<void> {
+    const task = Task.create(params)
+    const participants = await this.participantRepository.getAll()
+
+    participants.map(async (participant) => {
+      task.newAssign(participant)
+      await this.taskRepository.save(task)
+    })
+  }
 }
