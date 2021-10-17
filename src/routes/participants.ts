@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import PromiseRouter from 'express-promise-router'
-import ParticipantsController from '../controllers/participantscontroller'
+import ParticipantsController from '../controllers/participantsController'
 
 // 回避策が分からないので一旦後回し
 // ref: https://stackoverflow.com/questions/67114152/typescript-eslint-throwing-a-promise-returned-error-on-a-express-router-async https://github.com/express-promise-router/express-promise-router/issues/230

@@ -10,6 +10,7 @@ app.use(express.json())
 
 // routers
 app.use('/api/participants', Routes.participantsRouter)
+app.use('/api/tasks', Routes.tasksRouter)
 
 // helth check
 app.get('/api/hc', (_req, res) => res.send('ok!!'))

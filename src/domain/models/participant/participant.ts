@@ -14,18 +14,6 @@ interface ParticipantAttributes {
 // > & { enrollmentStatus: { name: string; id: Identifier } }
 
 export default class Participant extends AggregateRoot<ParticipantAttributes> {
-  private constructor(props: ParticipantAttributes, id?: Identifier) {
-    super(props, id)
-  }
-
-  private static validate(params: {
-    name: string
-    email: string
-  }): void | never {
-    if (!params.name) throw new Error('名前が設定されていません。')
-    if (!params.email) throw new Error('メールアドレスが設定されていません。')
-  }
-
   public static create(params: { name: string; email: string }): Participant {
     this.validate(params)
     return new Participant({
@@ -40,5 +28,17 @@ export default class Participant extends AggregateRoot<ParticipantAttributes> {
   ): Participant {
     this.validate(params)
     return new Participant(params, id)
+  }
+
+  private static validate(params: {
+    name: string
+    email: string
+  }): void | never {
+    if (!params.name) throw new Error('名前が設定されていません。')
+    if (!params.email) throw new Error('メールアドレスが設定されていません。')
+  }
+
+  private constructor(props: ParticipantAttributes, id?: Identifier) {
+    super(props, id)
   }
 }
