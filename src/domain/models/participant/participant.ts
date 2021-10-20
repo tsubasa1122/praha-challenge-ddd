@@ -1,10 +1,12 @@
 import { AggregateRoot } from 'src/domain/shared/AggregateRoot'
 import { Identifier } from 'src/domain/shared/Identifier'
 import EnrollmentStatus from './enrollmentStatus'
+import ParticipantName from './participantName'
+import ParticipantEmail from './participantEmail'
 
 interface ParticipantAttributes {
-  name: string
-  email: string
+  name: ParticipantName
+  email: ParticipantEmail
   enrollmentStatus: EnrollmentStatus
 }
 
@@ -18,23 +20,31 @@ export default class Participant extends AggregateRoot<ParticipantAttributes> {
     this.validate(params)
     return new Participant({
       ...params,
+      name: ParticipantName.create({ name: params.name }),
+      email: ParticipantEmail.create({ email: params.email }),
       enrollmentStatus: EnrollmentStatus.create(),
     })
   }
 
   public static recreate(
-    params: ParticipantAttributes,
+    params: { name: string; email: string; enrollmentStatus: EnrollmentStatus },
     id: Identifier,
   ): Participant {
     this.validate(params)
-    return new Participant(params, id)
+    return new Participant(
+      {
+        ...params,
+        name: ParticipantName.create({ name: params.name }),
+        email: ParticipantEmail.create({ email: params.email }),
+      },
+      id,
+    )
   }
 
   private static validate(params: {
     name: string
     email: string
   }): void | never {
-    if (!params.name) throw new Error('名前が設定されていません。')
     if (!params.email) throw new Error('メールアドレスが設定されていません。')
   }
 
