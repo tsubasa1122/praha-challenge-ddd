@@ -1,11 +1,13 @@
 import { AggregateRoot } from 'src/domain/shared/AggregateRoot'
 import { Identifier } from 'src/domain/shared/Identifier'
 import Participant from '../participant/participant'
+import TaskContent from './taskContent'
 import TaskStatus, { TaskStatusAttribute } from './taskStatus'
+import TaskTitle from './taskTitle'
 
 interface TaskAttributes {
-  title: string
-  content: string
+  title: TaskTitle
+  content: TaskContent
   taskStatus: TaskStatus
   participantId?: number
 }
@@ -18,12 +20,28 @@ export default class Task extends AggregateRoot<TaskAttributes> {
   }): Task {
     return new Task({
       ...params,
+      title: TaskTitle.create({ title: params.title }),
+      content: TaskContent.create({ content: params.content }),
       taskStatus: TaskStatus.create(params.taskStatus as TaskStatusAttribute),
     })
   }
 
-  public static recreate(params: TaskAttributes, id: Identifier): Task {
-    return new Task(params, id)
+  public static recreate(
+    params: {
+      title: string
+      content: string
+      taskStatus: TaskStatus
+    },
+    id: Identifier,
+  ): Task {
+    return new Task(
+      {
+        ...params,
+        title: TaskTitle.create({ title: params.title }),
+        content: TaskContent.create({ content: params.content }),
+      },
+      id,
+    )
   }
 
   newAssign(participant: Participant): void {
