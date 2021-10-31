@@ -146,6 +146,8 @@ https://qiita.com/kabosu3d/items/680728362314f51bdcb0#3-%E3%82%A8%E3%83%A9%E3%83
   - Factory クラスを作っても良さそう？
     - 松岡さんの本から、モデル内に FactoryMethod を作っている例があったので、それを採用して良さそう
       - Value Object も必要になったら実装するで良いらしい
+- ID リストに専用の型を付けたい
+  - 今だと Aggregate root クラスに自動で Identifier が紐づくように実装してしまっている
 
 ### TODO
 

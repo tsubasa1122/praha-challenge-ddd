@@ -19,7 +19,6 @@ export default class Task extends AggregateRoot<TaskAttributes> {
     taskStatus: { name: string }
   }): Task {
     return new Task({
-      ...params,
       title: TaskTitle.create({ title: params.title }),
       content: TaskContent.create({ content: params.content }),
       taskStatus: TaskStatus.create(params.taskStatus as TaskStatusAttribute),
