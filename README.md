@@ -138,8 +138,17 @@ https://qiita.com/kabosu3d/items/680728362314f51bdcb0#3-%E3%82%A8%E3%83%A9%E3%83
   - 1. patch `/:taskId/not_started`などステータスごとにパスを分ける？(ステータスの更新はデータの更新はシンプルなので、ここまでやる必要はないかも？)
   - 2. patch `/:taskId` DDD 的にはリソース毎に更新させるので、これが正しい？(あくまでもデータの取り出しだけなので、URL は関係ない？)
   - 3. patch `/:taskId/status` 個人的にはこれが一番しっくりくる
+- value object でよく使うクラスは prefix を付けるべきか？
+  - 例: name -> participantName とした方が良い？
+- value object は usecase 層で作成しているみたい
+  - https://github.com/stemmlerjs/ddd-forum/blob/ea393502396c91b7d85fdcc664b158de683a0bf2/src/modules/users/useCases/createUser/CreateUserUseCase.ts#L29-L31
+  - 自分は create メソッド内で生成する実装にした
+  - Factory クラスを作っても良さそう？
+    - 松岡さんの本から、モデル内に FactoryMethod を作っている例があったので、それを採用して良さそう
+      - Value Object も必要になったら実装するで良いらしい
 
 ### TODO
 
 - [] DTO を作る
 - [] ユースケースにトランザクションを貼る
+- [] dist 配下に test ファイルを出力しないようにする

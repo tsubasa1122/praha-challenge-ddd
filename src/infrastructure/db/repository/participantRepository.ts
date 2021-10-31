@@ -13,7 +13,8 @@ export default class ParticipantRepository implements IParticipantRepository {
   async save(participant: Participant): Promise<void> {
     // Question: participant.props.enrollmentStatus.idがundefinedの場合、どんな挙動する？
     const data = {
-      ...participant.props,
+      name: participant.props.name.props.name,
+      email: participant.props.email.props.email,
       updatedAt: new Date(),
       enrollmentStatus: {
         connect: {
@@ -32,7 +33,7 @@ export default class ParticipantRepository implements IParticipantRepository {
     // findUniqueはv 2.12.0以降はfindOneにreplaceされたと書かれているが保管されない...
     // https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#model-queries
     const data = await this.ctx.prisma.participant.findUnique({
-      where: { email: participant.props.email },
+      where: { email: participant.props.email.props.email },
       include: {
         enrollmentStatus: true,
       },
