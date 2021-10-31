@@ -148,6 +148,8 @@ https://qiita.com/kabosu3d/items/680728362314f51bdcb0#3-%E3%82%A8%E3%83%A9%E3%83
       - Value Object も必要になったら実装するで良いらしい
 - ID リストに専用の型を付けたい
   - 今だと Aggregate root クラスに自動で Identifier が紐づくように実装してしまっている
+- 参加者のステータスは参加者が直接変える？ or 管理者が変えるのか決めた方が良さそう
+- プロパティは一旦全部 private にした方がいい？
 
 ### TODO
 
