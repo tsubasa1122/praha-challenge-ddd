@@ -44,9 +44,13 @@ export default class Task extends AggregateRoot<TaskAttributes> {
     )
   }
 
-  newAssign(participant: Participant): void {
+  public newAssign(participant: Participant): void {
     this.props.taskStatus.assingNewTask()
     this.props.participantId = participant.id
+  }
+
+  public changeStatus(statusName: string): void {
+    this.props.taskStatus.changeStatus(statusName)
   }
 
   private constructor(props: TaskAttributes, id?: Identifier) {

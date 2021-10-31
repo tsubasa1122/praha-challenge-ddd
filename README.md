@@ -144,6 +144,8 @@ https://qiita.com/kabosu3d/items/680728362314f51bdcb0#3-%E3%82%A8%E3%83%A9%E3%83
   - https://github.com/stemmlerjs/ddd-forum/blob/ea393502396c91b7d85fdcc664b158de683a0bf2/src/modules/users/useCases/createUser/CreateUserUseCase.ts#L29-L31
   - 自分は create メソッド内で生成する実装にした
   - Factory クラスを作っても良さそう？
+    - 松岡さんの本から、モデル内に FactoryMethod を作っている例があったので、それを採用して良さそう
+      - Value Object も必要になったら実装するで良いらしい
 
 ### TODO
 

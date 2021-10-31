@@ -36,10 +36,11 @@ describe('function create()', () => {
       }
       expect(Participant.create(participant)).toEqual(
         expect.objectContaining({
+          _id: undefined,
           props: {
-            name: 'テスト名',
-            email: 'test@example.com',
-            enrollmentStatus: EnrollmentStatus.create(),
+            email: { props: { email: 'test@example.com' } },
+            enrollmentStatus: { _id: undefined, props: { name: 'active' } },
+            name: { props: { name: 'テスト名' } },
           },
         }),
       )
@@ -97,12 +98,12 @@ describe('function recreate()', () => {
         expect.objectContaining({
           _id: { value: 1 },
           props: {
-            name: 'テスト名',
-            email: 'test@example.com',
+            email: { props: { email: 'test@example.com' } },
             enrollmentStatus: {
               _id: { value: 1 },
-              props: { name: ENROLLMENT_STATUS_NAME.INACTIVE },
+              props: { name: 'inactive' },
             },
+            name: { props: { name: 'テスト名' } },
           },
         }),
       )

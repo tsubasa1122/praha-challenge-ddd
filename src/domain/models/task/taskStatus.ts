@@ -28,6 +28,26 @@ export default class TaskStatus extends Entity<TaskStatusAttribute> {
     this.props.name = TASK_STATUS_NAME.NOT_STARTED
   }
 
+  public changeStatus(statusName: string): void {
+    if (this.props.name === TASK_STATUS_NAME.DONE)
+      throw new Error('完了済みのステータスは変更出来ません。')
+
+    this.validateStatusName(statusName)
+
+    this.props.name = statusName as TaskStatusAttribute['name']
+  }
+
+  private validateStatusName(statusName: string): void | never {
+    if (
+      Object.values(TASK_STATUS_NAME).includes(
+        statusName as TaskStatusAttribute['name'],
+      )
+    )
+      return
+
+    throw new Error('不正なステータスです。')
+  }
+
   private constructor(props: TaskStatusAttribute, id?: Identifier) {
     super(props, id)
   }
