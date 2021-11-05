@@ -1,8 +1,8 @@
 import { AggregateRoot } from 'src/domain/shared/AggregateRoot'
-import { Identifier } from 'src/domain/shared/Identifier'
 import EnrollmentStatus from './enrollmentStatus'
 import ParticipantName from './participantName'
 import ParticipantEmail from './participantEmail'
+import ParticipantId from './participantId'
 
 interface ParticipantAttributes {
   name: ParticipantName
@@ -15,7 +15,10 @@ interface ParticipantAttributes {
 //   'enrollmentStatus'
 // > & { enrollmentStatus: { name: string; id: Identifier } }
 
-export default class Participant extends AggregateRoot<ParticipantAttributes> {
+export default class Participant extends AggregateRoot<
+  ParticipantAttributes,
+  ParticipantId
+> {
   public static create(params: { name: string; email: string }): Participant {
     return new Participant({
       ...params,
@@ -27,7 +30,7 @@ export default class Participant extends AggregateRoot<ParticipantAttributes> {
 
   public static recreate(
     params: { name: string; email: string; enrollmentStatus: EnrollmentStatus },
-    id: Identifier,
+    id: number,
   ): Participant {
     return new Participant(
       {
@@ -35,11 +38,11 @@ export default class Participant extends AggregateRoot<ParticipantAttributes> {
         name: ParticipantName.create({ name: params.name }),
         email: ParticipantEmail.create({ email: params.email }),
       },
-      id,
+      ParticipantId.create(id),
     )
   }
 
-  private constructor(props: ParticipantAttributes, id?: Identifier) {
+  private constructor(props: ParticipantAttributes, id?: ParticipantId) {
     super(props, id)
   }
 }

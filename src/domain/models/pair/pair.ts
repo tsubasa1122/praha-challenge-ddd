@@ -1,19 +1,19 @@
 import { AggregateRoot } from 'src/domain/shared/AggregateRoot'
-import { Identifier } from 'src/domain/shared/Identifier'
+import ParticipantId from '../participant/participantId'
+import PairId from './pairId'
 import PairName from './pairName'
 
-// TODO: idに型を定義する
 interface PairAttributes {
   name: PairName
   teamId: number
-  participantIdList: number[]
+  participantIdList: ParticipantId[]
 }
 
-export default class Pair extends AggregateRoot<PairAttributes> {
+export default class Pair extends AggregateRoot<PairAttributes, PairId> {
   public static create(params: {
     name: string
     teamId: number
-    participantIdList: number[]
+    participantIdList: ParticipantId[]
   }): Pair {
     return new Pair({
       ...params,
@@ -25,20 +25,20 @@ export default class Pair extends AggregateRoot<PairAttributes> {
     params: {
       name: string
       teamId: number
-      participantIdList: number[]
+      participantIdList: ParticipantId[]
     },
-    id: Identifier,
+    id: number,
   ): Pair {
     return new Pair(
       {
         ...params,
         name: PairName.create({ name: params.name }),
       },
-      id,
+      PairId.create(id),
     )
   }
 
-  private constructor(props: PairAttributes, id?: Identifier) {
+  private constructor(props: PairAttributes, id?: PairId) {
     super(props, id)
   }
 }
