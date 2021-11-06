@@ -5,7 +5,7 @@ interface ParticipantEmailAttributes {
 }
 
 export default class ParticipantEmail extends ValueObject<ParticipantEmailAttributes> {
-  public static EMAIL_REGEXP = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+  private static EMAIL_REGEXP = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
 
   public static create(params: ParticipantEmailAttributes): ParticipantEmail {
     if (!params.email) throw new Error('メールアドレスが設定されていません。')

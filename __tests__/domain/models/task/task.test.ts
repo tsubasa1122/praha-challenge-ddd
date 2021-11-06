@@ -1,6 +1,5 @@
 import TaskStatus, { TASK_STATUS_NAME } from 'src/domain/models/task/taskStatus'
 import Task from 'src/domain/models/task/task'
-import { Identifier } from 'src/domain/shared/Identifier'
 import EnrollmentStatus, {
   ENROLLMENT_STATUS_NAME,
 } from 'src/domain/models/participant/enrollmentStatus'
@@ -40,10 +39,10 @@ describe('function recreate()', () => {
         content: 'テストを始めてみよう。',
         taskStatus: TaskStatus.recreate(
           { name: TASK_STATUS_NAME.NOT_STARTED },
-          new Identifier(1),
+          1,
         ),
       }
-      expect(Task.recreate({ ...task }, new Identifier(1))).toEqual(
+      expect(Task.recreate({ ...task }, 1)).toEqual(
         expect.objectContaining({
           _id: { value: 1 },
           props: {
@@ -67,24 +66,21 @@ describe('function newAssign()', () => {
       content: 'テストを始めてみよう。',
       taskStatus: TaskStatus.recreate(
         { name: TASK_STATUS_NAME.NOT_STARTED },
-        new Identifier(1),
+        1,
       ),
     }
-    const task = Task.recreate({ ...taskParams }, new Identifier(1))
+    const task = Task.recreate({ ...taskParams }, 1)
 
     const participantParams = {
       name: 'テスト名',
       email: 'test@example.com',
       enrollmentStatus: EnrollmentStatus.recreate(
         { name: ENROLLMENT_STATUS_NAME.ACTIVE },
-        new Identifier(2),
+        2,
       ),
     }
 
-    const participant = Participant.recreate(
-      participantParams,
-      new Identifier(2),
-    )
+    const participant = Participant.recreate(participantParams, 2)
 
     expect(task.props.participantId).toEqual(undefined)
     task.newAssign(participant)
@@ -102,10 +98,10 @@ describe('function changeStatus', () => {
       content: 'テストを始めてみよう。',
       taskStatus: TaskStatus.recreate(
         { name: TASK_STATUS_NAME.NOT_STARTED },
-        new Identifier(1),
+        1,
       ),
     }
-    const task = Task.recreate({ ...taskParams }, new Identifier(1))
+    const task = Task.recreate({ ...taskParams }, 1)
     task.changeStatus('done')
     expect(task.props.taskStatus.props.name).toEqual(TASK_STATUS_NAME.DONE)
   })

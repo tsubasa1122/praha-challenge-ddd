@@ -2,7 +2,6 @@ import Participant from 'src/domain/models/participant/participant'
 import EnrollmentStatus, {
   ENROLLMENT_STATUS_NAME,
 } from 'src/domain/models/participant/enrollmentStatus'
-import { Identifier } from 'src/domain/shared/Identifier'
 
 describe('function create()', () => {
   describe('各パラメータの値が設定されているとき', () => {
@@ -28,16 +27,15 @@ describe('function create()', () => {
 describe('function recreate()', () => {
   describe('各パラメータの値が設定されているとき', () => {
     it('participantインスタンスが生成されること', () => {
-      const identifier = new Identifier(1)
       const participant = {
         name: 'テスト名',
         email: 'test@example.com',
         enrollmentStatus: EnrollmentStatus.recreate(
           { name: ENROLLMENT_STATUS_NAME.INACTIVE },
-          identifier,
+          1,
         ),
       }
-      expect(Participant.recreate(participant, identifier)).toEqual(
+      expect(Participant.recreate(participant, 1)).toEqual(
         expect.objectContaining({
           _id: { value: 1 },
           props: {

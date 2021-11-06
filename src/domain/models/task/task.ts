@@ -1,7 +1,7 @@
 import { AggregateRoot } from 'src/domain/shared/AggregateRoot'
-import { Identifier } from 'src/domain/shared/Identifier'
 import Participant from '../participant/participant'
 import TaskContent from './taskContent'
+import TaskId from './taskId'
 import TaskStatus, { TaskStatusAttribute } from './taskStatus'
 import TaskTitle from './taskTitle'
 
@@ -12,14 +12,13 @@ interface TaskAttributes {
   participantId?: number
 }
 
-export default class Task extends AggregateRoot<TaskAttributes> {
+export default class Task extends AggregateRoot<TaskAttributes, TaskId> {
   public static create(params: {
     title: string
     content: string
     taskStatus: { name: string }
   }): Task {
     return new Task({
-      ...params,
       title: TaskTitle.create({ title: params.title }),
       content: TaskContent.create({ content: params.content }),
       taskStatus: TaskStatus.create(params.taskStatus as TaskStatusAttribute),
@@ -32,7 +31,7 @@ export default class Task extends AggregateRoot<TaskAttributes> {
       content: string
       taskStatus: TaskStatus
     },
-    id: Identifier,
+    id: number,
   ): Task {
     return new Task(
       {
@@ -40,7 +39,7 @@ export default class Task extends AggregateRoot<TaskAttributes> {
         title: TaskTitle.create({ title: params.title }),
         content: TaskContent.create({ content: params.content }),
       },
-      id,
+      TaskId.create(id),
     )
   }
 
@@ -53,7 +52,7 @@ export default class Task extends AggregateRoot<TaskAttributes> {
     this.props.taskStatus.changeStatus(statusName)
   }
 
-  private constructor(props: TaskAttributes, id?: Identifier) {
+  private constructor(props: TaskAttributes, id?: TaskId) {
     super(props, id)
   }
 }

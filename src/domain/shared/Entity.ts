@@ -1,13 +1,13 @@
 import { Identifier } from './Identifier'
-const isEntity = (v: any): v is Entity<any> => {
+const isEntity = (v: any): v is Entity<any, any> => {
   return v instanceof Entity
 }
 
-export abstract class Entity<T> {
-  protected readonly _id?: Identifier
+export abstract class Entity<T, U extends Identifier> {
+  protected readonly _id?: U
   public readonly props: T
 
-  constructor(props: T, id?: Identifier) {
+  constructor(props: T, id?: U) {
     this._id = id
     this.props = props
   }
@@ -17,7 +17,7 @@ export abstract class Entity<T> {
     return this._id.toValue()
   }
 
-  public equals(object?: Entity<T>): boolean {
+  public equals(object?: Entity<T, U>): boolean {
     if (object === null || object == undefined) return false
     if (!this._id) return false
     if (!isEntity(object)) return false

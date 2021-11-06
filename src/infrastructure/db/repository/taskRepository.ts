@@ -4,7 +4,6 @@ import TaskStatus, {
   TaskStatusAttribute,
   TASK_STATUS_NAME,
 } from 'src/domain/models/task/taskStatus'
-import { Identifier } from 'src/domain/shared/Identifier'
 import { Context } from '../shared/context'
 
 export default class TaskRepository implements ITaskRepository {
@@ -43,10 +42,10 @@ export default class TaskRepository implements ITaskRepository {
             {
               name: newTaskStatusData.name,
             } as TaskStatusAttribute,
-            new Identifier(newTaskStatusData.id),
+            newTaskStatusData.id,
           ),
         },
-        new Identifier(data.id),
+        data.id,
       ),
     )
   }

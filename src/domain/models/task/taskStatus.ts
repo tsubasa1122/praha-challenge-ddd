@@ -1,6 +1,6 @@
 import { Entity } from 'src/domain/shared/Entity'
-import { Identifier } from 'src/domain/shared/Identifier'
 import { valueOf } from 'src/utils/utilityTypes'
+import TaskStatusId from './taskStatusId'
 
 export const TASK_STATUS_NAME = {
   NOT_STARTED: 'not_started',
@@ -12,16 +12,16 @@ export interface TaskStatusAttribute {
   name: valueOf<typeof TASK_STATUS_NAME>
 }
 
-export default class TaskStatus extends Entity<TaskStatusAttribute> {
+export default class TaskStatus extends Entity<
+  TaskStatusAttribute,
+  TaskStatusId
+> {
   public static create(params: TaskStatusAttribute): TaskStatus {
     return new TaskStatus({ ...params })
   }
 
-  public static recreate(
-    params: TaskStatusAttribute,
-    id: Identifier,
-  ): TaskStatus {
-    return new TaskStatus({ ...params }, id)
+  public static recreate(params: TaskStatusAttribute, id: number): TaskStatus {
+    return new TaskStatus({ ...params }, TaskStatusId.create(id))
   }
 
   public assingNewTask(): void {
@@ -48,7 +48,7 @@ export default class TaskStatus extends Entity<TaskStatusAttribute> {
     throw new Error('不正なステータスです。')
   }
 
-  private constructor(props: TaskStatusAttribute, id?: Identifier) {
+  private constructor(props: TaskStatusAttribute, id?: TaskStatusId) {
     super(props, id)
   }
 }

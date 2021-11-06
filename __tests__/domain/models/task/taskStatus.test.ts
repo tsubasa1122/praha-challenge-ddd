@@ -1,5 +1,4 @@
 import TaskStatus, { TASK_STATUS_NAME } from 'src/domain/models/task/taskStatus'
-import { Identifier } from 'src/domain/shared/Identifier'
 
 describe('function recreate()', () => {
   describe('各パラメータの値が設定されている時', () => {
@@ -8,7 +7,7 @@ describe('function recreate()', () => {
         name: TASK_STATUS_NAME.DONE,
       }
 
-      expect(TaskStatus.recreate({ ...taskStatus }, new Identifier(1))).toEqual(
+      expect(TaskStatus.recreate({ ...taskStatus }, 1)).toEqual(
         expect.objectContaining({
           _id: { value: 1 },
           props: {
@@ -26,7 +25,7 @@ describe('function assingNewTask()', () => {
       {
         name: TASK_STATUS_NAME.WAITING_FOR_REVIEW,
       },
-      new Identifier(1),
+      1,
     )
 
     expect(taskStatus.props.name).toEqual('waiting_for_review')
@@ -42,7 +41,7 @@ describe('function changeStatus()', () => {
         {
           name: TASK_STATUS_NAME.DONE,
         },
-        new Identifier(1),
+        1,
       )
 
       expect(() => taskStatus.changeStatus('not_started')).toThrow(
@@ -57,7 +56,7 @@ describe('function changeStatus()', () => {
         {
           name: TASK_STATUS_NAME.NOT_STARTED,
         },
-        new Identifier(1),
+        1,
       )
 
       expect(() => taskStatus.changeStatus('started')).toThrow(
@@ -72,7 +71,7 @@ describe('function changeStatus()', () => {
         {
           name: TASK_STATUS_NAME.NOT_STARTED,
         },
-        new Identifier(1),
+        1,
       )
 
       taskStatus.changeStatus('waiting_for_review')

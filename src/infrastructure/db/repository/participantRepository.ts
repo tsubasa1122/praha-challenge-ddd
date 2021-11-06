@@ -4,7 +4,6 @@ import Participant from 'src/domain/models/participant/participant'
 import EnrollmentStatus, {
   EnrollmentStatusAttribute,
 } from 'src/domain/models/participant/enrollmentStatus'
-import { Identifier } from 'src/domain/shared/Identifier'
 
 export default class ParticipantRepository implements IParticipantRepository {
   constructor(private ctx: Context) {}
@@ -42,7 +41,7 @@ export default class ParticipantRepository implements IParticipantRepository {
 
     const enrollmentStatus = EnrollmentStatus.recreate(
       { name: data.enrollmentStatus.name } as EnrollmentStatusAttribute,
-      new Identifier(data.enrollmentStatusId),
+      data.enrollmentStatusId,
     )
 
     const participantParams = {
@@ -50,7 +49,7 @@ export default class ParticipantRepository implements IParticipantRepository {
       email: data.email,
       enrollmentStatus: enrollmentStatus,
     }
-    return Participant.recreate(participantParams, new Identifier(data.id))
+    return Participant.recreate(participantParams, data.id)
   }
 
   // 例外発生するメソッドの命名規則を作る
@@ -67,7 +66,7 @@ export default class ParticipantRepository implements IParticipantRepository {
 
     const enrollmentStatusInstance = EnrollmentStatus.recreate(
       { name: data.enrollmentStatus.name } as EnrollmentStatusAttribute,
-      new Identifier(data.enrollmentStatusId),
+      data.enrollmentStatusId,
     )
 
     const participantParams = {
@@ -75,7 +74,7 @@ export default class ParticipantRepository implements IParticipantRepository {
       email: data.email,
       enrollmentStatus: enrollmentStatusInstance,
     }
-    return Participant.recreate(participantParams, new Identifier(data.id))
+    return Participant.recreate(participantParams, data.id)
   }
 
   async getAll(): Promise<Participant[]> {
@@ -89,7 +88,7 @@ export default class ParticipantRepository implements IParticipantRepository {
     return participantDatas.map((data) => {
       const enrollmentStatus = EnrollmentStatus.recreate(
         { name: data.enrollmentStatus.name } as EnrollmentStatusAttribute,
-        new Identifier(data.enrollmentStatus.id),
+        data.enrollmentStatus.id,
       )
 
       const participantParams = {
@@ -98,7 +97,7 @@ export default class ParticipantRepository implements IParticipantRepository {
         enrollmentStatus: enrollmentStatus,
       }
 
-      return Participant.recreate(participantParams, new Identifier(data.id))
+      return Participant.recreate(participantParams, data.id)
     })
   }
 }

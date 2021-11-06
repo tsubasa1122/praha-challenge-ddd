@@ -1,6 +1,6 @@
 import { Entity } from 'src/domain/shared/Entity'
-import { Identifier } from 'src/domain/shared/Identifier'
 import { valueOf } from 'src/utils/utilityTypes'
+import EnrollmentStatusId from './enrollmentStatusId'
 
 // TODO: namespaceを定義する
 export const ENROLLMENT_STATUS_NAME = {
@@ -15,7 +15,10 @@ export interface EnrollmentStatusAttribute {
 }
 
 // インスタンス参照にするとidを持たせないといけなくなるので、ValueObjectにしても良いかも？
-export default class EnrollmentStatus extends Entity<EnrollmentStatusAttribute> {
+export default class EnrollmentStatus extends Entity<
+  EnrollmentStatusAttribute,
+  EnrollmentStatusId
+> {
   // createは命名微妙？
   public static create(): EnrollmentStatus {
     const name = ENROLLMENT_STATUS_NAME.ACTIVE
@@ -24,12 +27,15 @@ export default class EnrollmentStatus extends Entity<EnrollmentStatusAttribute> 
 
   public static recreate(
     params: EnrollmentStatusAttribute,
-    id: Identifier,
+    id: number,
   ): EnrollmentStatus {
-    return new EnrollmentStatus({ ...params }, id)
+    return new EnrollmentStatus({ ...params }, EnrollmentStatusId.create(id))
   }
 
-  private constructor(props: EnrollmentStatusAttribute, id?: Identifier) {
+  private constructor(
+    props: EnrollmentStatusAttribute,
+    id?: EnrollmentStatusId,
+  ) {
     super(props, id)
   }
 
