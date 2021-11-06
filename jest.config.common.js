@@ -10,4 +10,5 @@ module.exports = {
     '^@testUtil/(.*)$': '<rootDir>/testUtil/$1',
   },
   coverageDirectory: './coverage/',
+  testPathIgnorePatterns: ['<rootDir>/dist'],
 }
