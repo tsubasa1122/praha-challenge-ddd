@@ -8,7 +8,6 @@ package チーム集約 {
     }
     object ペア {
         ペア名
-        チームID
         List<参加者ID>
     }
 }

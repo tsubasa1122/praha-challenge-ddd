@@ -1,18 +1,16 @@
-import { AggregateRoot } from '../../../domain/shared/AggregateRoot'
+import { Entity } from '../../shared/Entity'
 import ParticipantId from '../participant/participantId'
 import PairId from './pairId'
 import PairName from './pairName'
 
 interface PairAttributes {
   name: PairName
-  teamId: number
   participantIdList: ParticipantId[]
 }
 
-export default class Pair extends AggregateRoot<PairAttributes, PairId> {
+export default class Pair extends Entity<PairAttributes, PairId> {
   public static create(params: {
     name: string
-    teamId: number
     participantIdList: ParticipantId[]
   }): Pair {
     return new Pair({
@@ -24,7 +22,6 @@ export default class Pair extends AggregateRoot<PairAttributes, PairId> {
   public static recreate(
     params: {
       name: string
-      teamId: number
       participantIdList: ParticipantId[]
     },
     id: number,
