@@ -1,15 +1,18 @@
-import { Pair } from '@prisma/client'
 import { AggregateRoot } from 'src/domain/shared/AggregateRoot'
+import BelongToTeam from './belongToTeam'
 import TeamId from './teamId'
 import TeamName from './teamName'
 
 interface TeamAttributes {
   name: TeamName
-  pairList: Pair[]
+  belongToTeam: BelongToTeam
 }
 
 export default class Team extends AggregateRoot<TeamAttributes, TeamId> {
-  public static create(params: { name: string; pairList: Pair[] }): Team {
+  public static create(params: {
+    name: string
+    belongToTeam: BelongToTeam
+  }): Team {
     return new Team({
       ...params,
       name: TeamName.create({ name: params.name }),
@@ -17,7 +20,7 @@ export default class Team extends AggregateRoot<TeamAttributes, TeamId> {
   }
 
   public static recreate(
-    params: { name: string; pairList: Pair[] },
+    params: { name: string; belongToTeam: BelongToTeam },
     id: number,
   ): Team {
     return new Team(

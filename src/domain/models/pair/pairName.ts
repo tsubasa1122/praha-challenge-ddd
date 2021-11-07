@@ -12,7 +12,7 @@ export default class PairName extends ValueObject<PairNameAttributes> {
     const name = params.name.trim()
 
     if (!name) throw new Error('ペア名が設定されていません。')
-    if (this.MAX_LENGTH <= name.length)
+    if (this.MAX_LENGTH < name.length)
       throw new Error('ペア名は一文字でなければいけません。')
     if (!this.FORMAT_REGEXP.exec(name))
       throw new Error('ペア名は半角英数字でなければいけません。')

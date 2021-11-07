@@ -1,17 +1,17 @@
 import { Entity } from '../../shared/Entity'
-import ParticipantId from '../participant/participantId'
+import BelongToPair from './belongToPair'
 import PairId from './pairId'
 import PairName from './pairName'
 
 interface PairAttributes {
   name: PairName
-  participantIdList: ParticipantId[]
+  belongToPair: BelongToPair
 }
 
 export default class Pair extends Entity<PairAttributes, PairId> {
   public static create(params: {
     name: string
-    participantIdList: ParticipantId[]
+    belongToPair: BelongToPair
   }): Pair {
     return new Pair({
       ...params,
@@ -22,7 +22,7 @@ export default class Pair extends Entity<PairAttributes, PairId> {
   public static recreate(
     params: {
       name: string
-      participantIdList: ParticipantId[]
+      belongToPair: BelongToPair
     },
     id: number,
   ): Pair {
