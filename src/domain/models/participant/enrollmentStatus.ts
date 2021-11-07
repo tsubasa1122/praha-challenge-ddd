@@ -32,6 +32,23 @@ export default class EnrollmentStatus extends Entity<
     return new EnrollmentStatus({ ...params }, EnrollmentStatusId.create(id))
   }
 
+  public changeStatus(statusName: string): void {
+    this.validateStatusName(statusName)
+
+    this.props.name = statusName as EnrollmentStatusAttribute['name']
+  }
+
+  private validateStatusName(statusName: string): void | never {
+    if (
+      Object.values(ENROLLMENT_STATUS_NAME).includes(
+        statusName as EnrollmentStatusAttribute['name'],
+      )
+    )
+      return
+
+    throw new Error('不正なステータスです。')
+  }
+
   private constructor(
     props: EnrollmentStatusAttribute,
     id?: EnrollmentStatusId,
