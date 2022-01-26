@@ -81,14 +81,10 @@ export default class ParticipantsController {
     try {
       const page = req.query?.page
 
-      // Github Actions上で何故か落ちるので一旦disabledにする
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call
       const participantQS = new ParticipantQS({
         prisma: this.prismaClient,
       })
 
-      // Github Actions上で何故か落ちるので一旦disabledにする
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
       const participants = await participantQS.getAll(Number(page))
       res.status(200).send(participants)
     } catch (e) {
