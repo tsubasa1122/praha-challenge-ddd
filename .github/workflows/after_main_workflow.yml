@@ -4,6 +4,7 @@ on:
   workflow_run:
     workflows:
       - Main
+    branches: settings-ci
     types:
       - 'completed'
 
