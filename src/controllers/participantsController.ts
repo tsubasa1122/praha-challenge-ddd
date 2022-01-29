@@ -80,9 +80,11 @@ export default class ParticipantsController {
   ): Promise<void> => {
     try {
       const page = req.query?.page
+
       const participantQS = new ParticipantQS({
         prisma: this.prismaClient,
       })
+
       const participants = await participantQS.getAll(Number(page))
       res.status(200).send(participants)
     } catch (e) {

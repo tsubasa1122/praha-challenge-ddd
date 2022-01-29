@@ -1,0 +1,21 @@
+name: Lint
+
+on: push
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js 15.5
+        uses: actions/setup-node@v2
+        with:
+          node-version: 15.5.0
+          cache: yarn
+
+      - name: Install
+        run: rm -rf node_modules && yarn install --frozen-lockfile
+      - name: Lint
+        run: yarn run lint
