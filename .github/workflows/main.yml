@@ -24,15 +24,15 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 15.5.0
-          cache: yarn
+          cache: npm
 
       - name: Install
-        run: rm -rf node_modules && yarn install --frozen-lockfile
+        run: npm ci
       - name: Lint
-        run: yarn run lint
+        run: npm run lint
       - name: Setup Test DB
         run: >
-          yarn run migrate:test
-          yarn run model-generate
+          npm run migrate:test
+          npm run model-generate
       - name: Test Integration
-        run: yarn run test:integration
+        run: npm run test:integration
