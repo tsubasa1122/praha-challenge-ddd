@@ -1,0 +1,14 @@
+name: After Actions
+
+on:
+  workflow_run:
+    workflows:
+      - Main
+    types:
+      - 'completed'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello world"
