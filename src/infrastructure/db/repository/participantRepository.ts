@@ -11,15 +11,21 @@ export default class ParticipantRepository implements IParticipantRepository {
   // TOOD: insertやupdateなどのメソッドに命名を変更する
   async save(participant: Participant): Promise<void> {
     // Question: participant.props.enrollmentStatus.idがundefinedの場合、どんな挙動する？
+
+    // TODO: findUniqを使用するために、name属性にはuniq制約を追加する
+    const enrollmentStatus = await this.ctx.prisma.enrollmentStatus.findFirst({
+      where: {
+        name: participant.props.enrollmentStatus.props.name,
+      },
+    })
+
+    if (!enrollmentStatus) return
+
     const data = {
       name: participant.props.name.props.name,
       email: participant.props.email.props.email,
+      enrollmentStatusId: enrollmentStatus.id,
       updatedAt: new Date(),
-      enrollmentStatus: {
-        connect: {
-          name: participant.props.enrollmentStatus.props.name,
-        },
-      },
     }
 
     await this.ctx.prisma.participant.create({
