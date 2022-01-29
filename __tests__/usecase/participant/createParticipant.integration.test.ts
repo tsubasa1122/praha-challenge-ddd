@@ -106,7 +106,7 @@ describe('function execute()', () => {
       },
     })
 
-    expect(newParticipant).toHaveProperty('name', 'nakaaano')
+    expect(newParticipant).toHaveProperty('name', 'nakano')
     expect(newParticipant).toHaveProperty('enrollmentStatus.name', 'active')
     expect(tasks.length).toBe(3)
   })
