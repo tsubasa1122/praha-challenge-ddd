@@ -1,5 +1,5 @@
-import { Entity } from 'src/domain/shared/Entity'
-import { valueOf } from 'src/utils/utilityTypes'
+import { Entity } from '../../../domain/shared/Entity'
+import { valueOf } from '../../../utils/utilityTypes'
 import EnrollmentStatusId from './enrollmentStatusId'
 
 // TODO: namespaceを定義する

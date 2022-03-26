@@ -1,4 +1,4 @@
-import { AggregateRoot } from 'src/domain/shared/AggregateRoot'
+import { AggregateRoot } from '../../../domain/shared/AggregateRoot'
 import Participant from '../participant/participant'
 import TaskContent from './taskContent'
 import TaskId from './taskId'

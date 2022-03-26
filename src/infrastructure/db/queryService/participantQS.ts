@@ -2,7 +2,7 @@ import { Context } from '../shared/context'
 import {
   IParticipantQS,
   ParticipantDTO,
-} from 'src/usecase/queryService/IParticipantQS'
+} from '../../../usecase/queryService/IParticipantQS'
 
 export default class ParticipantQS implements IParticipantQS {
   private static MAX_TAKE_COUNT = 10

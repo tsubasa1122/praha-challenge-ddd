@@ -1,4 +1,4 @@
-import { ENROLLMENT_STATUS_NAME } from 'src/domain/models/participant/enrollmentStatus'
+import { ENROLLMENT_STATUS_NAME } from '../../domain/models/participant/enrollmentStatus'
 
 export class ParticipantDTO {
   public readonly id: number

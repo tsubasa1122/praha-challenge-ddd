@@ -1,7 +1,6 @@
-import { IParticipantRepository } from 'src/domain/models/participant/IParticipantRepository'
-import { ITaskRepository } from 'src/domain/models/task/ITaksRepository'
-import Task from 'src/domain/models/task/task'
-
+import { IParticipantRepository } from '../../domain/models/participant/IParticipantRepository'
+import { ITaskRepository } from '../../domain/models/task/ITaksRepository'
+import Task from '../../domain/models/task/task'
 export default class CreateTaskUseCase {
   constructor(
     private participantRepository: IParticipantRepository,

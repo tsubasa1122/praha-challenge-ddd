@@ -1,4 +1,4 @@
-import { IParticipantRepository } from 'src/domain/models/participant/IParticipantRepository'
+import { IParticipantRepository } from '../../domain/models/participant/IParticipantRepository'
 
 export default class UpdateParticipantUseCase {
   constructor(private participantRepository: IParticipantRepository) {}

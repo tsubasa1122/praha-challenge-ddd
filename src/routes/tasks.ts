@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import PromiseRouter from 'express-promise-router'
-import TasksController from 'src/controllers/tasksController'
+import TasksController from '../controllers/tasksController'
 
 /* eslint-disable */
 

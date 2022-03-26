@@ -1,4 +1,4 @@
-import { AggregateRoot } from 'src/domain/shared/AggregateRoot'
+import { AggregateRoot } from '../../../domain/shared/AggregateRoot'
 import ParticipantId from '../participant/participantId'
 import PairId from './pairId'
 import PairName from './pairName'

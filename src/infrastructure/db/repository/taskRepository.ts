@@ -1,9 +1,9 @@
-import { ITaskRepository } from 'src/domain/models/task/ITaksRepository'
-import Task from 'src/domain/models/task/task'
+import { ITaskRepository } from '../../../domain/models/task/ITaksRepository'
+import Task from '../../../domain/models/task/task'
 import TaskStatus, {
   TaskStatusAttribute,
   TASK_STATUS_NAME,
-} from 'src/domain/models/task/taskStatus'
+} from '../../../domain/models/task/taskStatus'
 import { Context } from '../shared/context'
 
 export default class TaskRepository implements ITaskRepository {

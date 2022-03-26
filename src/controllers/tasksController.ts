@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import { Request, Response, NextFunction } from 'express'
-import ParticipantRepository from 'src/infrastructure/db/repository/participantRepository'
-import TaskRepository from 'src/infrastructure/db/repository/taskRepository'
-import CreateTaskUseCase from 'src/usecase/task/createTaskUseCase'
+import ParticipantRepository from '../infrastructure/db/repository/participantRepository'
+import TaskRepository from '../infrastructure/db/repository/taskRepository'
+import CreateTaskUseCase from '../usecase/task/createTaskUseCase'
 
 interface CreateTaskParams {
   title: string

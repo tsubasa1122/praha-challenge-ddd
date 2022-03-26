@@ -1,7 +1,7 @@
-import { IParticipantRepository } from 'src/domain/models/participant/IParticipantRepository'
-import Participant from 'src/domain/models/participant/participant'
-import { ITaskRepository } from 'src/domain/models/task/ITaksRepository'
-import checkEmailAlreadyExistsService from 'src/domain/services/participant/checkEmailAlreadyExistsService'
+import { IParticipantRepository } from '../../domain/models/participant/IParticipantRepository'
+import Participant from '../../domain/models/participant/participant'
+import { ITaskRepository } from '../../domain/models/task/ITaksRepository'
+import checkEmailAlreadyExistsService from '../../domain/services/participant/checkEmailAlreadyExistsService'
 
 // TODO: 複数集約間の整合性を保つためにトランザクションを貼る
 export default class CreateParticipantUseCase {
