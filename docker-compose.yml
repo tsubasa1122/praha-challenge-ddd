@@ -1,5 +1,17 @@
 version: '3.7'
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - prisma-db
+      - prisma-test-db
   prisma-db:
     container_name: prisma-db
     image: postgres:12
