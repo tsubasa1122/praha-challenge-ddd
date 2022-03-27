@@ -1,0 +1,8 @@
+.git
+.github
+/node_modules
+/dist
+/design
+npm-debug.log
+.DS_Store
+README.md

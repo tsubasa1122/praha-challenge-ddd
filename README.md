@@ -9,7 +9,6 @@ $ yarn install
 ### Create Database(docker で環境構築する場合)
 
 ```bash
-$ cd .docker
 $ docker-compose up -d
 ```
 
