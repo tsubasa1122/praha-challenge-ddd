@@ -4,7 +4,8 @@ FROM node:15.5.0
 
 RUN apt-get update && apt-get install -y \
       bash \
-      vim
+      vim \
+      postgresql-client
 
 WORKDIR /app
 COPY package.json ./
@@ -14,8 +15,8 @@ RUN yarn
 
 COPY . .
 
-# RUN chmod -R +x ./docker-scripts/
+RUN chmod +x ./entrypoint.sh
 
 EXPOSE 8000
 
-CMD yarn dev
+CMD ["bash", "entrypoint.sh"]
