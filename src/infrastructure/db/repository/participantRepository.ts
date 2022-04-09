@@ -33,6 +33,21 @@ export default class ParticipantRepository implements IParticipantRepository {
     })
   }
 
+  async update(participant: Participant): Promise<void> {
+    const data = {
+      name: participant.props.name.props.name,
+      email: participant.props.email.props.email,
+      updatedAt: new Date(),
+    }
+
+    await this.ctx.prisma.participant.update({
+      where: {
+        id: participant.id,
+      },
+      data: data,
+    })
+  }
+
   //  重複チェック用の独自メソッドにする？
   async findByEmail(participant: Participant): Promise<Participant | null> {
     // findUniqueはv 2.12.0以降はfindOneにreplaceされたと書かれているが保管されない...

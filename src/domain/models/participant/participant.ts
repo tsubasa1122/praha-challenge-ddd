@@ -42,6 +42,17 @@ export default class Participant extends AggregateRoot<
     )
   }
 
+  // setter系のメソッドはどうしたらいいんだろう？
+  public changeAttributes(params: {
+    name: string
+    email: string
+    statusName: string
+  }): void {
+    this.props.name = ParticipantName.create({ name: params.name })
+    this.props.email = ParticipantEmail.create({ email: params.email })
+    this.props.enrollmentStatus.changeStatus(params.statusName)
+  }
+
   private constructor(props: ParticipantAttributes, id?: ParticipantId) {
     super(props, id)
   }

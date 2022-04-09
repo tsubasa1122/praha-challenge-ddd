@@ -14,6 +14,12 @@ export default class UpdateParticipantUseCase {
       params.participantId,
     )
     if (!participant) throw new Error('参加者が見つかりません。')
-    // TODO: セッターを隠蔽してメソッド化する
+    const participantParams = {
+      name: params.name,
+      email: params.email,
+      statusName: params.statusName,
+    }
+    participant.changeAttributes(participantParams)
+    await this.participantRepository.update(participant)
   }
 }
