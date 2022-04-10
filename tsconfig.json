@@ -8,9 +8,13 @@
     "target": "ES2019",
     "module": "commonjs",
     "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
+    "outDir": "dist",
+    "baseUrl": ".",
     "incremental": true,
     "esModuleInterop": true,
+    "include": ["**/*.ts"],
+    "exclude": [
+      "node_modules",
+      "dist"]
   }
 }
