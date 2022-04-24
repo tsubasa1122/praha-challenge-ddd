@@ -28,6 +28,7 @@
     "test:integration": "yarn migrate:test && dotenv -e .test.env -- jest -c ./jest.integration.config.js --runInBand"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.12",
     "@types/express": "4.17.13",
     "@types/jest": "^26.0.24",
     "@types/node": "16.3.1",
@@ -52,9 +53,11 @@
   },
   "dependencies": {
     "@prisma/client": "^2.27.0",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "4.17.1",
-    "express-promise-router": "^4.1.0"
+    "express-promise-router": "^4.1.0",
+    "firebase-admin": "^10.1.0"
   },
   "huskey": {
     "hooks": {
