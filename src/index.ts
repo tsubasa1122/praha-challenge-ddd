@@ -4,6 +4,7 @@ import cors from 'cors'
 import * as Routes from './routes'
 import admin from 'firebase-admin'
 import { getAuth } from 'firebase-admin/auth'
+import serviceAccount from '../clean-bindery-220507-firebase-adminsdk-bedn1-dc4590e246.json'
 
 // const prisma = new PrismaClient();
 const app = express()
@@ -14,10 +15,9 @@ app.use(express.json())
 // CORSを許可する 今回は雑に全てのオリジンを許可する
 app.use(cors())
 
-const serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS
 if (serviceAccount) {
   const firebase = admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
     databaseURL: 'https://clean-bindery-220507.firebaseio.com',
   })
   firebase.auth()
