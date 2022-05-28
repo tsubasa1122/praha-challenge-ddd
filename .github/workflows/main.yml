@@ -1,38 +1,38 @@
-name: Main
+# name: Main
 
-on: push
+# on: push
 
-jobs:
-  CI:
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:12
-        env:
-          POSTGRES_USER: root
-          POSTGRES_PASSWORD: prisma2020
-          POSTGRES_DB: prisma
-          POSTGRES_INITDB_ARGS: '--encoding=UTF-8'
-          TZ: 'Asia/Tokyo'
-        ports:
-          - '5402:5432'
+# jobs:
+#   CI:
+#     runs-on: ubuntu-latest
+#     services:
+#       postgres:
+#         image: postgres:12
+#         env:
+#           POSTGRES_USER: root
+#           POSTGRES_PASSWORD: prisma2020
+#           POSTGRES_DB: prisma
+#           POSTGRES_INITDB_ARGS: '--encoding=UTF-8'
+#           TZ: 'Asia/Tokyo'
+#         ports:
+#           - '5402:5432'
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Use Node.js 15.5
-        uses: actions/setup-node@v2
-        with:
-          node-version: 15.5.0
-          cache: yarn
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       - name: Use Node.js 15.5
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: 15.5.0
+#           cache: yarn
 
-      - name: Install
-        run: rm -rf node_modules && yarn install --frozen-lockfile
-      - name: Lint
-        run: yarn run lint
-      - name: Setup Test DB
-        run: >
-          yarn run migrate:test
-          yarn run model-generate
-      - name: Test Integration
-        run: yarn run test:integration
+#       - name: Install
+#         run: rm -rf node_modules && yarn install --frozen-lockfile
+#       - name: Lint
+#         run: yarn run lint
+#       - name: Setup Test DB
+#         run: >
+#           yarn run migrate:test
+#           yarn run model-generate
+#       - name: Test Integration
+#         run: yarn run test:integration
