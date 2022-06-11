@@ -1,4 +1,4 @@
-import TeamId from 'src/domain/models/team/teamId'
+import TeamId from '../../../../src/domain/models/team/teamId'
 
 describe('function create()', () => {
   describe('idが設定されている時', () => {

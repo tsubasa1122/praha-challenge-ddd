@@ -1,4 +1,4 @@
-import ParticipantName from 'src/domain/models/participant/participantName'
+import ParticipantName from '../../../../src/domain/models/participant/participantName'
 
 describe('function create()', () => {
   describe('nameの値が設定されていない時', () => {

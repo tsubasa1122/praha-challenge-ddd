@@ -27,7 +27,7 @@ $ yarn run db:seed
 **単体テスト**
 
 ```bash
-$ yarn test
+$ yarn test:unit
 ```
 
 **結合テスト**

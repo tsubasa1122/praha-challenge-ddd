@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
-import Participant from 'src/domain/models/participant/participant'
-import checkEmailAlreadyExistsService from 'src/domain/services/participant/checkEmailAlreadyExistsService'
-import ParticipantRepository from 'src/infrastructure/db/repository/participantRepository'
+import Participant from '../../../../../src/domain/models/participant/participant'
+import checkEmailAlreadyExistsService from '../../../../../src/domain/services/participant/checkEmailAlreadyExistsService'
+import ParticipantRepository from '../../../../../src/infrastructure/db/repository/participantRepository'
 
 describe('function execute()', () => {
   describe('emailの参加者が既に登録済みのとき', () => {

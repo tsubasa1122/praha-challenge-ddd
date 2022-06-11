@@ -1,4 +1,4 @@
-import ParticipantEmail from 'src/domain/models/participant/participantEmail'
+import ParticipantEmail from '../../../../src/domain/models/participant/participantEmail'
 
 describe('function create()', () => {
   describe('emailの値が設定されていない時', () => {

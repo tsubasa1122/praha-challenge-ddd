@@ -1,4 +1,4 @@
-import PairName from 'src/domain/models/pair/pairName'
+import PairName from '../../../../src/domain/models/pair/pairName'
 
 describe('function create()', () => {
   describe('nameの値が設定されていない時', () => {

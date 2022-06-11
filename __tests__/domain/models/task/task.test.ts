@@ -1,9 +1,11 @@
-import TaskStatus, { TASK_STATUS_NAME } from 'src/domain/models/task/taskStatus'
-import Task from 'src/domain/models/task/task'
 import EnrollmentStatus, {
   ENROLLMENT_STATUS_NAME,
-} from 'src/domain/models/participant/enrollmentStatus'
-import Participant from 'src/domain/models/participant/participant'
+} from '../../../../src/domain/models/participant/enrollmentStatus'
+import Participant from '../../../../src/domain/models/participant/participant'
+import Task from '../../../../src/domain/models/task/task'
+import TaskStatus, {
+  TASK_STATUS_NAME,
+} from '../../../../src/domain/models/task/taskStatus'
 
 describe('function create()', () => {
   describe('各パラメータの値が設定されているとき', () => {

@@ -1,4 +1,4 @@
-import EnrollmentStatusId from 'src/domain/models/participant/enrollmentStatusId'
+import EnrollmentStatusId from '../../../../src/domain/models/participant/enrollmentStatusId'
 
 describe('function create()', () => {
   describe('idが設定されている時', () => {

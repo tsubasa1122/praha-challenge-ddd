@@ -58,12 +58,9 @@
   },
   "huskey": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": ""
     }
   },
   "lint-staged": {
-    "*.{js,ts}": "eslint --cache --fix",
-    "*.ts": "bash -c tsc --noEmit",
-    "*.{js,ts,json}": "prettier --write"
   }
 }

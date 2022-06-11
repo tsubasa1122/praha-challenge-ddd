@@ -1,5 +1,5 @@
-import PairId from 'src/domain/models/pair/pairId'
-import BelongToTeam from 'src/domain/models/team/belongToTeam'
+import PairId from '../../../../src/domain/models/pair/pairId'
+import BelongToTeam from '../../../../src/domain/models/team/belongToTeam'
 
 describe('function create()', () => {
   it('BelongToPairインスタンスが生成されること', () => {

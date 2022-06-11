@@ -1,6 +1,6 @@
-import PairId from 'src/domain/models/pair/pairId'
-import BelongToTeam from 'src/domain/models/team/belongToTeam'
-import Team from 'src/domain/models/team/team'
+import PairId from '../../../../src/domain/models/pair/pairId'
+import BelongToTeam from '../../../../src/domain/models/team/belongToTeam'
+import Team from '../../../../src/domain/models/team/team'
 
 describe('function create()', () => {
   describe('各パラメータの値が設定されているとき', () => {
