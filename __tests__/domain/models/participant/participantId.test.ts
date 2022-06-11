@@ -1,4 +1,4 @@
-import ParticipantId from 'src/domain/models/participant/participantId'
+import ParticipantId from '../../../../src/domain/models/participant/participantId'
 
 describe('function create()', () => {
   describe('idが設定されている時', () => {

@@ -1,7 +1,7 @@
-import Participant from 'src/domain/models/participant/participant'
 import EnrollmentStatus, {
   ENROLLMENT_STATUS_NAME,
-} from 'src/domain/models/participant/enrollmentStatus'
+} from '../../../../src/domain/models/participant/enrollmentStatus'
+import Participant from '../../../../src/domain/models/participant/participant'
 
 describe('function create()', () => {
   describe('各パラメータの値が設定されているとき', () => {

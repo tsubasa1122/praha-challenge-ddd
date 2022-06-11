@@ -1,4 +1,6 @@
-import TaskStatus, { TASK_STATUS_NAME } from 'src/domain/models/task/taskStatus'
+import TaskStatus, {
+  TASK_STATUS_NAME,
+} from '../../../../src/domain/models/task/taskStatus'
 
 describe('function recreate()', () => {
   describe('各パラメータの値が設定されている時', () => {

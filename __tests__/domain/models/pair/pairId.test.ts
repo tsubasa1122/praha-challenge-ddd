@@ -1,4 +1,4 @@
-import PairId from 'src/domain/models/pair/pairId'
+import PairId from '../../../../src/domain/models/pair/pairId'
 
 describe('function create()', () => {
   describe('idが設定されている時', () => {

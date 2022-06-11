@@ -1,4 +1,4 @@
-import TaskContent from 'src/domain/models/task/taskContent'
+import TaskContent from '../../../../src/domain/models/task/taskContent'
 
 describe('function create()', () => {
   describe('contentが設定されていない時', () => {

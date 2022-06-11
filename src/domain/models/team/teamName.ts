@@ -1,4 +1,4 @@
-import { ValueObject } from 'src/domain/shared/ValueObject'
+import { ValueObject } from '../../shared/ValueObject'
 
 interface TeamNameAttributes {
   name: string

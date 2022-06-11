@@ -1,4 +1,4 @@
-import TaskTitle from 'src/domain/models/task/taskTitle'
+import TaskTitle from '../../../../src/domain/models/task/taskTitle'
 
 describe('function create()', () => {
   describe('titleが設定されていない時', () => {

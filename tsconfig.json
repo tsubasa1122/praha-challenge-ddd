@@ -5,15 +5,12 @@
     "declaration": true,
     "removeComments": true,
     "allowSyntheticDefaultImports": true,
-    "lib": ["es2020"],
-    "target": "es2020",
+    "target": "es2021",
     "module": "commonjs",
     "sourceMap": true,
-    "outDir": "dist",
-    "baseUrl": ".",
+    "outDir": "./dist",
+    "rootDir": "./",
     "incremental": true,
-    "esModuleInterop": true,
-  },
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+    "esModuleInterop": true
+  }
 }

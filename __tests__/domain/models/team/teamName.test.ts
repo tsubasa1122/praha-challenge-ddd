@@ -1,4 +1,4 @@
-import TeamName from 'src/domain/models/team/teamName'
+import TeamName from '../../../../src/domain/models/team/teamName'
 
 describe('function create()', () => {
   describe('nameの値が設定されていない時', () => {

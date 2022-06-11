@@ -1,4 +1,4 @@
-import { Identifier } from 'src/domain/shared/Identifier'
+import { Identifier } from '../../shared/Identifier'
 
 export default class TeamId extends Identifier {
   public static create(params: number): TeamId {

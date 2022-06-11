@@ -1,4 +1,4 @@
-import { Entity } from 'src/domain/shared/Entity'
+import { Entity } from '../../shared/Entity'
 import ParticipantId from '../participant/participantId'
 import PairId from './pairId'
 

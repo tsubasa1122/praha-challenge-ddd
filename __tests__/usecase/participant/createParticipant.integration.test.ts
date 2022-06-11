@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
-import ParticipantRepository from 'src/infrastructure/db/repository/participantRepository'
-import TaskRepository from 'src/infrastructure/db/repository/taskRepository'
-import CreateParticipantUseCase from 'src/usecase/participant/createParticipantUseCase'
+import ParticipantRepository from '../../../src/infrastructure/db/repository/participantRepository'
+import TaskRepository from '../../../src/infrastructure/db/repository/taskRepository'
+import CreateParticipantUseCase from '../../../src/usecase/participant/createParticipantUseCase'
 
 const prisma = new PrismaClient()
 

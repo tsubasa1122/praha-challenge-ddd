@@ -12,7 +12,7 @@ app.use(express.json())
 app.use('/api/participants', Routes.participantsRouter)
 app.use('/api/tasks', Routes.tasksRouter)
 
-// helth check
+// health check
 app.get('/api/hc', (_req, res) => res.send('ok!!'))
 
 // start up server

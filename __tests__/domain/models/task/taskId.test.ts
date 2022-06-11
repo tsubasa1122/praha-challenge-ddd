@@ -1,4 +1,4 @@
-import TaskId from 'src/domain/models/task/taskId'
+import TaskId from '../../../../src/domain/models/task/taskId'
 
 describe('function create()', () => {
   describe('idが設定されている時', () => {

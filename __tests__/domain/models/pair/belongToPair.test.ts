@@ -1,5 +1,5 @@
-import BelongToPair from 'src/domain/models/pair/belongToPair'
-import ParticipantId from 'src/domain/models/participant/participantId'
+import BelongToPair from '../../../../src/domain/models/pair/belongToPair'
+import ParticipantId from '../../../../src/domain/models/participant/participantId'
 
 describe('function create()', () => {
   it('BelongToPairインスタンスが生成されること', () => {

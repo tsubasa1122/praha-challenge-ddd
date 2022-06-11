@@ -1,6 +1,6 @@
 import EnrollmentStatus, {
   ENROLLMENT_STATUS_NAME,
-} from 'src/domain/models/participant/enrollmentStatus'
+} from '../../../../src/domain/models/participant/enrollmentStatus'
 
 describe('function create()', () => {
   it('ステータス名「active」でインスタンスが生成されること', () => {
