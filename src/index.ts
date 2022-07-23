@@ -1,5 +1,5 @@
-// import { PrismaClient } from '@prisma/client';
 import { PrismaClient } from '@prisma/client'
+import cors from 'cors'
 import express from 'express'
 import * as Routes from './routes'
 
@@ -7,6 +7,8 @@ const app = express()
 const PORT = process.env.PORT || 8000
 
 app.use(express.json())
+// corsの設定追加
+app.use(cors())
 
 const prisma = new PrismaClient()
 
