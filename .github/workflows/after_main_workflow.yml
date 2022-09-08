@@ -2,9 +2,10 @@ name: After Actions
 
 on:
   pull_request:
+    types: [opened, edited]
     branches:
-      - test
-    types: [opened, edited]  
+      - "test/**"
+
 
 jobs:
   test:
