@@ -7,7 +7,7 @@ export const ENROLLMENT_STATUS_NAME = {
   INACTIVE: 'inactive',
   WITHDRAWN: 'withdrawn',
 } as const
-
+// test
 // MEMO: attributeが増えたら各プロパティをvalue objectに変えても良さそう
 export interface EnrollmentStatusAttribute {
   name: valueOf<typeof ENROLLMENT_STATUS_NAME>
