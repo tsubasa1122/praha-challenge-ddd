@@ -10,7 +10,8 @@ on:
 
 
 jobs:
-  test:
+  run_if:
+    if: contains(github.head_ref, 'test')
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
