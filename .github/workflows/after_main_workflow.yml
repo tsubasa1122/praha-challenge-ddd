@@ -1,12 +1,8 @@
 name: After Actions
 
 on:
-  workflow_run:
-    workflows:
-      - Main
-    branches: settings-ci
-    types:
-      - 'completed'
+  pull_request:
+    types: [opened, edited]  
 
 jobs:
   test:
@@ -15,4 +11,4 @@ jobs:
       - run: echo "hello world"
       - name: Dump GitHub context
         id: github_context_step
-        run: echo '${{ toJSON(github) }}'
+        run: echo '${{ toJSON(github.event.pull_request.html_url) }}'

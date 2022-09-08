@@ -28,8 +28,7 @@ jobs:
           GIT_PR_RELEASE_BRANCH_STAGING: test
         run: |
           gem install -N git-pr-release
-          git-pr-release > sample.txt
-          cat sample.txt
+          git-pr-release
       # - name: Save PR number
       #   env:
       #     PR_NUMBER: ${{ github.event.number }}
