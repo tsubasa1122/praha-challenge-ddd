@@ -6,8 +6,7 @@ on:
       - opened
       - edited
     branches:
-      - "test"
-
+      - "master"
 
 jobs:
   job:
