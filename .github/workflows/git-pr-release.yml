@@ -3,6 +3,8 @@ on:
   push
   # schedule:
   #   - cron: '*/5 * * * *'
+  #   branches:
+  #     - test
 jobs:
   job:
     runs-on: ubuntu-latest
@@ -19,7 +21,7 @@ jobs:
         #   run: |
         #     git switch -c test
         #     git push origin test
-        # - name: Create a release pull request
+      - name: Create a release pull request
         env:
           GIT_PR_RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_PR_RELEASE_BRANCH_PRODUCTION: master
@@ -27,3 +29,9 @@ jobs:
         run: |
           gem install -N git-pr-release
           git-pr-release
+      # - name: Save PR number
+      #   env:
+      #     PR_NUMBER: ${{ github.event.number }}
+      #   run: |
+      #     mkdir -p ./pr
+      #     echo $PR_NUMBER > ./pr/pr_number

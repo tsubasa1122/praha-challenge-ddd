@@ -2,7 +2,6 @@ import { Entity } from '../../../domain/shared/Entity'
 import { valueOf } from '../../../utils/utilityTypes'
 import EnrollmentStatusId from './enrollmentStatusId'
 
-// TODO: namespaceを定義する
 export const ENROLLMENT_STATUS_NAME = {
   ACTIVE: 'active',
   INACTIVE: 'inactive',
