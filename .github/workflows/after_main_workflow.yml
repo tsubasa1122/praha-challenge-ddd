@@ -6,12 +6,11 @@ on:
       - opened
       - edited
     branches:
-      - "test/**"
+      - "test"
 
 
 jobs:
-  run_if:
-    if: contains(github.head_ref, 'test')
+  job:
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
