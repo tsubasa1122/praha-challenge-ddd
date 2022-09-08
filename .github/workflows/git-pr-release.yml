@@ -29,7 +29,7 @@ jobs:
         run: |
           gem install -N git-pr-release
           git-pr-release | sed -e 's/[^0-9]//g' > sample.txt
-          echo sample.txt
+          cat sample.txt
       # - name: Save PR number
       #   env:
       #     PR_NUMBER: ${{ github.event.number }}
