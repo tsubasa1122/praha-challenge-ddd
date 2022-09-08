@@ -6,12 +6,16 @@ jobs:
   job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
       - name: Create a release pull request
-        uses: bakunyo/git-pr-release-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_PR_RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_PR_RELEASE_BRANCH_PRODUCTION: master
           GIT_PR_RELEASE_BRANCH_STAGING: test
+        run: |
+          gem install -N git-pr-release
+          git-pr-release
