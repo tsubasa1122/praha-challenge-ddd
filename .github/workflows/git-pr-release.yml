@@ -28,7 +28,7 @@ jobs:
           GIT_PR_RELEASE_BRANCH_STAGING: test
         run: |
           gem install -N git-pr-release
-          git-pr-release | sed -e 's/[^0-9]//g' > sample.txt
+          git-pr-release > sample.txt
           cat sample.txt
       # - name: Save PR number
       #   env:
