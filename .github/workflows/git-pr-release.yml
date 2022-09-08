@@ -19,7 +19,7 @@ jobs:
         #   run: |
         #     git switch -c test
         #     git push origin test
-        # - name: Create a release pull request
+      - name: Create a release pull request
         env:
           GIT_PR_RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_PR_RELEASE_BRANCH_PRODUCTION: master
