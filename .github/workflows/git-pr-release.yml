@@ -29,6 +29,10 @@ jobs:
         run: |
           gem install -N git-pr-release
           git-pr-release
+      - name: Get PR
+        run: |
+          pr_url(gh pr list --head test --json 'url' --jq '.[].url')
+          echo $pr_url
       # - name: Save PR number
       #   env:
       #     PR_NUMBER: ${{ github.event.number }}
