@@ -34,13 +34,14 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pr_url=$(gh pr list --head test --json 'url' --jq '.[].url')
-          echo $pr_url
+          echo "::set-output name=PR_URL::$pr_url"
+        id: action1
       - name: Notify slack
         uses: slackapi/slack-github-action@v1.21.0
         with:
           payload: |
             {
-              "text": "${{$pr_url}}"
+              "text": "${{steps.action1.outputs.pr_url}}"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
