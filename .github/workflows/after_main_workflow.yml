@@ -11,9 +11,9 @@ on:
 
 jobs:
   job:
-    # if: ${{ startsWith(github.head_ref, 'test') && github.event.pull_request.user.login == 'github-actions[bot]' }}
+    if: ${{ startsWith(github.head_ref, 'test') && startsWith(github.event.pull_request.user.login, 'github-actions[bot]') }}
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
         id: github_context_step
-        run: echo '${{ startsWith(github.event.pull_request.user.login, 'github-actions[bot]') }}'
+        run: echo "success"
