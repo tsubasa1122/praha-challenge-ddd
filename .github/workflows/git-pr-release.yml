@@ -29,12 +29,24 @@ jobs:
         run: |
           gem install -N git-pr-release
           git-pr-release
-      - name: Get PR
+      - name: Get PR and Notify slack
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pr_url=$(gh pr list --head test --json 'url' --jq '.[].url')
           echo $pr_url
+      - name: Notify slack
+        uses: slackapi/slack-github-action@v1.21.0
+        with:
+          payload: |
+            {
+              "text": "${{$pr_url}}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_USERNAME: DeployBot
+          SLACK_CHANNEL: develop
+          SLACK_ICON: https://example.com/image/icon_bot.png
 
       # - name: Save PR number
       #   env:
