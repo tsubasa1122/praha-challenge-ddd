@@ -30,6 +30,8 @@ jobs:
           gem install -N git-pr-release
           git-pr-release
       - name: Get PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pr_url=$(gh pr list --head test --json 'url' --jq '.[].url')
           echo $pr_url
