@@ -22,4 +22,4 @@ jobs:
           echo ${{ github.head_ref }}
       - name: test
         if: ${{ startsWith(github.head_ref, 'test') && startsWith(github.event.pull_request.user.login, 'github-actions[bot]') }}
-        run: echo "success"
+        run: echo "successs"
